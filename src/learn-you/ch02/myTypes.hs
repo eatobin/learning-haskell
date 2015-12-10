@@ -10,3 +10,6 @@ myAbs' f x = f x
 myConvert :: (a -> b) -> a -> b
 myConvert f x = f x
 -- myConvert fromIntegral 7 :: Double -> 7.0
+
+myLength :: Float
+myLength = fromIntegral (length [1,2,3,4]) + 3.2
