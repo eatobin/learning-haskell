@@ -1,4 +1,4 @@
-module Learn where
+module Baby where
 
 doubleMe x = x + x
 
@@ -37,4 +37,7 @@ boomBangs = boomBang [7..13]
 notIt = [x | x <- [10..20], x /= 13, x /= 15, x /= 19]
 -- [10,11,12,14,16,17,18,20]
 
--- to end of pg 16
+length' xs = sum [1 | _ <- xs]
+
+zipFruit = zip [1..] ["apple", "orange", "cherry", "mango"]
+-- [(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
