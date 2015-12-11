@@ -22,3 +22,9 @@ myLengthAdd' xs = fromIntegral (length xs) + 3.2
 
 myHead :: [a] -> a
 myHead xs = head xs
+
+myOrd :: Ord a => a -> a -> Bool
+myOrd a b = a > b
+
+myOrd' :: Ord a => a -> a -> Ordering
+myOrd' a b = compare a b
