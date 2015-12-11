@@ -1,9 +1,9 @@
 module MyTypes where
 
-myAbs :: Int -> Int
+myAbs ::  Num a => a -> a
 myAbs x = abs x
 
-myAbs' :: (a -> a) -> a -> a
+myAbs' :: Num a => (a -> a) -> a -> a
 myAbs' f x = f x
 -- myAbs' abs (-77) -> 77
 
@@ -11,5 +11,14 @@ myConvert :: (a -> b) -> a -> b
 myConvert f x = f x
 -- myConvert fromIntegral 7 :: Double -> 7.0
 
-myLength :: Float
-myLength = fromIntegral (length [1,2,3,4]) + 3.2
+myLength :: Foldable t => t a -> Int
+myLength xs = length xs
+
+myLengthAdd :: Float
+myLengthAdd = fromIntegral (length [1,2,3,4]) + 3.2
+
+myLengthAdd' :: (Foldable t, Fractional b) => t a -> b
+myLengthAdd' xs = fromIntegral (length xs) + 3.2
+
+myHead :: [a] -> a
+myHead xs = head xs
