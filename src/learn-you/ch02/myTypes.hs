@@ -28,3 +28,8 @@ myOrd a b = a > b
 
 myOrd' :: Ord a => a -> a -> Ordering
 myOrd' a b = compare a b
+
+myRead = read "5" :: Int
+
+myRead' :: Float
+myRead' = read "5"
