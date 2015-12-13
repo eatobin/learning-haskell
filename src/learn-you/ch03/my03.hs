@@ -23,7 +23,7 @@ myAddSmall a
 
 myAddSmall' :: Int -> Int -> Int
 myAddSmall' a b
-  | a <= 100  = 0
+  | b == 0    = error "Division by 0!"
   | otherwise = x + y
   where x = a * b
         y = div a b
