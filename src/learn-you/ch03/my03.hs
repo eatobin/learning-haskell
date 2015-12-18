@@ -49,6 +49,6 @@ myAnd' False _ = False
 -- myAnd' (1 == 1) (2 == 3) -> False
 
 memory :: [a] -> String
-memory [] = "Empty"
-memory [a] = "One"
+memory []     = "Empty"
+memory [a]    = "One"
 memory (a:as) = "Many"
