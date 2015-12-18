@@ -1,4 +1,4 @@
-XXXmodule My03 where
+module My03 where
 
 myAdd :: Int
 myAdd = a + b
