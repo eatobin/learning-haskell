@@ -1,3 +1,16 @@
+module My04 where
+
+maximum' :: (Ord a) => [a] -> a
+maximum' [] = error "maximum of empty list!"
+maximum' [x] = x
+maximum' (x:xs) = max x (maximum' xs)
+-- maximum [2,5,1]
+-- max 2 (maximum' [5,1])
+-- max 5 (maximum' [1])
+-- max 5 1
+-- max 2 5
+
+-- from Seven Langs
 backwards :: (Num a) => [a] -> [a]
 backwards [] = []
 backwards (h:t) = backwards t ++ [h]
