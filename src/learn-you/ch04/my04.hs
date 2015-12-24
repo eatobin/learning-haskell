@@ -30,3 +30,8 @@ backwards' (h:t) = backwards' t ++ [h]
 -- backwards [] ++ [99]
 -- [99] ++ [3] ++ [2] ++ [1]
 -- [99,3,2,1]
+
+replicate' :: Int -> a -> [a]
+replicate' n x
+  | n <= 0 = []
+  | otherwise = x : replicate' (n - 1) x
