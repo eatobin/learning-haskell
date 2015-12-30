@@ -43,3 +43,7 @@ numLongChains = length (filter isLong (map chain [1..100]))
 -- ->[[1],[2,1],[3,10,5,16,8,4,2,1],[4,2,1],[5,16,8,4,2,1]]
 
 -- numLongChains -> 66
+
+listOfFuns :: [Integer -> Integer]
+listOfFuns = map (*) [0..]
+-- (listOfFuns !! 4) 5 -> 20
