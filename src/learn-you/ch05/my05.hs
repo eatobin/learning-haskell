@@ -28,6 +28,11 @@ largestDivisible = head (filter p [100000,99999..])
   where p x = mod x 3829 == 0
 -- 99554
 
+-- takeWhile (/= ' ') "elephants know how to party"
+
+mySum :: Int
+mySum = sum (takeWhile (< 10000) (filter odd (map (^2) [1..])))
+
 -- Collatz Chain
 chain :: Integer -> [Integer]
 chain 1 = [1]
@@ -47,3 +52,5 @@ numLongChains = length (filter isLong (map chain [1..100]))
 listOfFuns :: [Integer -> Integer]
 listOfFuns = map (*) [0..]
 -- (listOfFuns !! 4) 5 -> 20
+
+-- to page 71 Lambdas
