@@ -53,4 +53,12 @@ listOfFuns :: [Integer -> Integer]
 listOfFuns = map (*) [0..]
 -- (listOfFuns !! 4) 5 -> 20
 
--- to page 71 Lambdas
+numLongChains' :: Int
+numLongChains' = length (filter (\xs -> length xs > 15) (map chain [1..100]))
+
+myMap :: (Num a) => [a]
+myMap = map (+3) [1,6,3,2]
+
+myMap' :: (Fractional a) => [a]
+myMap' = map (\x -> x + 3.0) [1.4,55.55,6.0]
+
