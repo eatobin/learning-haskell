@@ -62,3 +62,16 @@ myMap = map (+3) [1,6,3,2]
 myMap' :: (Fractional a) => [a]
 myMap' = map (\x -> x + 3.0) [1.4,55.55,6.0]
 
+myMap2 :: [Int]
+myMap2 = map (\(a,b) -> a + b) [(1,2),(3,5),(6,3),(2,6),(2,5)]
+
+flip' :: (a -> b -> c) -> b -> a -> c
+flip' f = \x y -> f y x
+
+myZipWith :: [[Char]]
+myZipWith = zipWith (flip (++)) ["love you", "love me"] ["i ", "you "]
+-- ["i love you","you love me"]
+
+myZipWith' :: [[Char]]
+myZipWith' = zipWith (++) ["love you", "love me"] ["i ", "you "]
+-- ["love youi ","love meyou "]
