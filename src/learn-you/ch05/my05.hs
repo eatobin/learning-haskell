@@ -75,3 +75,21 @@ myZipWith = zipWith (flip (++)) ["love you", "love me"] ["i ", "you "]
 myZipWith' :: [[Char]]
 myZipWith' = zipWith (++) ["love you", "love me"] ["i ", "you "]
 -- ["love youi ","love meyou "]
+
+sum' :: (Num a) => [a] -> a
+sum' xs = foldl (\acc x -> acc + x) 0 xs
+
+sum1 :: (Num a) => [a] -> a
+sum1 = foldl (\acc x -> acc + x) 0
+
+sum2 :: (Num a) => [a] -> a
+sum2 = foldl (\acc x -> acc + x) 100
+
+sum3 :: (Num a) => [a] -> a
+sum3 = foldl (+) 100
+
+sum4 :: (Num a) => [a] -> a
+sum4 = foldr (+) 400
+
+eric :: [[Char]] -> [[Char]]
+eric = foldr (\x acc -> (x ++ " and Eric!") : acc) []
