@@ -93,3 +93,22 @@ sum4 = foldr (+) 400
 
 eric :: [[Char]] -> [[Char]]
 eric = foldr (\x acc -> (x ++ " and Eric!") : acc) []
+
+sum5 :: [Int] -> Int
+sum5 [] = 0
+sum5 (x:xs) = x + sum5 xs
+
+last' :: [a] -> a
+last' = foldl1 (\_ x -> x)
+
+myList = [4,8,33,9]
+
+myScan :: (Num a) => [a] -> [a]
+myScan = scanl (+) 0
+
+sqrt1 :: Float
+sqrt1 = sqrt $ 3 + 4 + 9
+
+sum99 :: (Num a, Ord a) => [a] -> a
+sum99 x = sum $ filter (> 10) $ map (*2) x
+
