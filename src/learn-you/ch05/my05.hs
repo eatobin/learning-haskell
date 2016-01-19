@@ -112,3 +112,11 @@ sqrt1 = sqrt $ 3 + 4 + 9
 sum99 :: (Num a, Ord a) => [a] -> a
 sum99 x = sum $ filter (> 10) $ map (*2) x
 
+g :: Int -> Int
+g x = x + 3
+
+f :: Int -> Int
+f x = x - 1
+
+fg :: Int -> Int
+fg  = f . g
