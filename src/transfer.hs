@@ -18,7 +18,7 @@ transfer from to amount
                      withdraw from amount)
 
 showAccount :: Account -> IO Int
-showAccount acc = atomically (readTVar acc)
+showAccount acc = readTVarIO acc
 
 main = do
     from <- atomically (newTVar 200)
