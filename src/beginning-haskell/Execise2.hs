@@ -1,6 +1,5 @@
 module Exercise2 where
 
--- text
 ex0 = [True, True]
 ex1 = if not (null ["hello","hola"]) then (head ["hello","hola"]) else "empty"
 
