@@ -1,6 +1,6 @@
 module Exercise2 where
 
-ex0 = True : True : []
+ex0 = [True, True] 
 ex1 = if not (null ["hello","hola"]) then (head ["hello","hola"]) else "empty"
 
 coll  = []
