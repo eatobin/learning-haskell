@@ -3,7 +3,7 @@ import Control.Monad
 import Control.Concurrent
 import Control.Concurrent.STM
 
-main = do shared <- atomically (newTVar 555667)
+main = do shared <- atomically (newTVar 70)
           --before <- atomRead shared
           --putStrLn $ "Before: " ++ show before
           --appV (+ 22) shared
@@ -13,10 +13,15 @@ main = do shared <- atomically (newTVar 555667)
           --after <- atomically (readTVar shared)
           --putStrLn ("After: " ++ show after)after <- atomically (readTVar shared)
           --putStrLn ("After: " ++ show after)
-          atomically (readTVar shared) >>= writeTVar ((+ 5) shared)
+          --atomically (writeTVar shared 59)
+          --appV shared
+          atomically (readTVar shared >>= \j -> writeTVar shared (j + 29))
           atomically (readTVar shared) >>= print
 
 --atomRead = atomically . readTVar
 --dispVar x = atomRead x >>= print
 --appV fn x = atomically $ readTVar x >>= writeTVar x . fn
---appV fn = atomically (readTVar shared) >>= (writeTVar shared) (+5)
+--appV fn x = atomically (readTVar x >>= writeTVar x . fn)
+--appV x = atomically (readTVar x >>= writeTVar x . (+ 1))
+--appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
+--appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
