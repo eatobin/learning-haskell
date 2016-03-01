@@ -14,14 +14,14 @@ main = do shared <- atomically (newTVar 70)
           --putStrLn ("After: " ++ show after)after <- atomically (readTVar shared)
           --putStrLn ("After: " ++ show after)
           --atomically (writeTVar shared 59)
-          --appV shared
-          atomically (readTVar shared >>= \j -> writeTVar shared (j + 29))
+          appV (+22) shared
+          -- atomically (readTVar shared >>= \j -> writeTVar shared (j + 29))
           atomically (readTVar shared) >>= print
 
 --atomRead = atomically . readTVar
 --dispVar x = atomRead x >>= print
 --appV fn x = atomically $ readTVar x >>= writeTVar x . fn
---appV fn x = atomically (readTVar x >>= writeTVar x . fn)
+appV fn x = atomically (readTVar x >>= writeTVar x . fn)
 --appV x = atomically (readTVar x >>= writeTVar x . (+ 1))
 --appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
 --appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
