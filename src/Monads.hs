@@ -17,7 +17,7 @@ x3 = liftM half (Just 6)
 x4 = liftM half (Just 5)
 
 getNth :: [a] -> Int -> Maybe a
-getNth [] i = Nothing
+getNth [] i  = Nothing
 getNth [x] i = Just x
 getNth xs i  = Just (xs !! i)
 
