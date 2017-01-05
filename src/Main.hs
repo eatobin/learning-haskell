@@ -19,3 +19,6 @@ triple x =
 waxOff :: Int -> Int
 waxOff =
   triple
+
+curryIs :: String
+curryIs = "Curry is awesome" ++ "!"
