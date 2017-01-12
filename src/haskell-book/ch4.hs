@@ -22,9 +22,23 @@ f :: (a, b) -> (c, d) -> ((b, d), (a, c))
 f t1 t2 =
   ((snd t1, snd t2), (fst t1, fst t2))
 
-x = (+)
+z :: Int -> Int -> Int
+z = (+)
 
 add1 :: String -> Int
 add1 xs =
-  w + 1
+  w `z` 1
     where w = length xs
+
+myId :: a -> a
+myId x =
+  x
+
+myFirst :: [Integer] -> Integer
+myFirst (x:_) =
+  x
+myFirst [] = 0
+
+firstTup :: (a, b) -> a
+firstTup t =
+  fst t
