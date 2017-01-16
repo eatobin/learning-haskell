@@ -14,7 +14,7 @@ isPalindrome x =
 
 myAbs :: Integer -> Integer
 myAbs x =
-  if (x >= 0)
+  if x >= 0
     then x
     else - x
 
@@ -40,5 +40,5 @@ myFirst (x:_) =
 myFirst [] = 0
 
 firstTup :: (a, b) -> a
-firstTup t =
-  fst t
+firstTup =
+  fst
