@@ -1,9 +1,18 @@
-{-# OPTIONS_GHC -Wall -fwarn-tabs #-}
-
 module Ch5 where
 
-ex2a :: a -> a -> a
-ex2a x _ = x
+--- 5.4
 
-ex2b :: a -> a -> a
-ex2b _ y = y
+-- 1.a)
+-- c)
+--
+-- 1.b)
+-- d)
+--
+-- 1.c)
+-- b)
+--
+-- 1.d)
+-- a)
+--
+-- 1.e)
+-- e)
