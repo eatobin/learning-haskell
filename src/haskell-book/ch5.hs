@@ -28,3 +28,14 @@ module Ch5 where
 -- 7 d
 -- 8 a
 -- 9 c
+
+-- page 140
+
+ex2a :: a -> a -> a
+ex2a x _ = x
+
+ex2b :: a -> a -> a
+ex2b _ y = y
+
+ex3 :: a -> b -> b
+ex3 _ y = y
