@@ -1,3 +1,5 @@
+{-# LANGUAGE NoMonomorphismRestriction #-}
+
 module Ch5 where
 
 -- 5.4
@@ -57,3 +59,12 @@ myCom x = x > (length [1..10])
 
 myAlph :: Char -> Bool
 myAlph x = x < 'z'
+
+-- page 148
+
+-- 1 c
+-- 2 a
+-- 3 b
+-- 4 c
+
+example = 1
