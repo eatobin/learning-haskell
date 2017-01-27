@@ -68,3 +68,18 @@ myAlph x = x < 'z'
 -- 4 c
 
 example = 1
+
+-- page 149
+
+q1a = (* 9) 6
+-- 1a) 54 :: Num a => a
+q1b = head [(0,"doge"),(1,"kitteh")]
+-- 1b) (0,"doge") :: Num t => (Num t, [Char])
+q1c = head [(0 :: Integer,"doge"),(1,"kitteh")]
+-- 1c) (0,"doge") :: (Integer, [Char])
+q1d = if False then True else False
+-- 1d) False :: Bool
+q1e = length [1,2,3,4,5]
+-- 1e) 5 :: Int
+q1f = (length [1,2,3,4]) > (length "TACOCAT")
+-- 1f) False :: Bool
