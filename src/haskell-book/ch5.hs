@@ -100,3 +100,20 @@ q5y = " <3 "
 q5z = "Haskell"
 q5f = q5x ++ q5y ++ q5z
 -- q5f :: [Char]
+
+-- bigNum = (^) 5 $ 10
+bigNum = (^) 5 10
+wahoo = bigNum + 10
+
+xx = print
+yy = print "woohoo!"
+zz = xx "hello ericky"
+
+aa = (+)
+bb = 6
+cc = aa bb 10
+dd = aa cc 200
+
+aaa = 12 + bbb
+bbb = 10000 * ccc
+ccc = 4
