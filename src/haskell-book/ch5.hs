@@ -55,7 +55,7 @@ myTake :: Int -> String
 myTake x = take x "hey you"
 
 myCom :: Int -> Bool
-myCom x = x > (length [1..10])
+myCom x = x > length [1..10]
 
 myAlph :: Char -> Bool
 myAlph x = x < 'z'
@@ -77,9 +77,17 @@ q1b = head [(0,"doge"),(1,"kitteh")]
 -- 1b) (0,"doge") :: Num t => (Num t, [Char])
 q1c = head [(0 :: Integer,"doge"),(1,"kitteh")]
 -- 1c) (0,"doge") :: (Integer, [Char])
-q1d = if False then True else False
+--q1d = if False then True else False
 -- 1d) False :: Bool
 q1e = length [1,2,3,4,5]
 -- 1e) 5 :: Int
-q1f = (length [1,2,3,4]) > (length "TACOCAT")
+q1f = length [1,2,3,4] > length "TACOCAT"
 -- 1f) False :: Bool
+
+q2x = 5
+q2y = q2x + 5
+q2w = q2y * 10
+-- q2w :: Num a => a
+
+z q2y = q2y * 10
+-- z :: Num a => a -> a
