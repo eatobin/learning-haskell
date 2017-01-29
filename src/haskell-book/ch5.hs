@@ -91,3 +91,12 @@ q2w = q2y * 10
 
 z q2y = q2y * 10
 -- z :: Num a => a -> a
+
+q4f = 4 / q2y
+-- q4f :: Fractional a => a
+
+q5x = "Julie"
+q5y = " <3 "
+q5z = "Haskell"
+q5f = q5x ++ q5y ++ q5z
+-- q5f :: [Char]
