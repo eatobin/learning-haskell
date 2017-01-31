@@ -123,3 +123,38 @@ addEm :: Integral a => a -> a -> a
 --addEm :: Fractional a => a -> a -> a
 addEm x y =
   x + y
+
+functionH :: [a] -> a
+functionH (x:_) = x
+
+functionC :: Ord a => a -> a -> Bool
+--functionC x y = if x > y then True else False
+functionC x y =
+  x > y
+
+functionS :: (a, b) -> b
+functionS (x, y) = y
+
+myFunc :: (x -> y)
+       -> (y -> z)
+       -> c
+       -> (a, x)
+       -> (a, z)
+myFunc xToY yToZ _ (a, x) =
+  (a, yToZ(xToY x))
+
+i :: a -> a
+i x =
+  x
+
+c :: a -> b -> a
+c x _ =
+  x
+
+c'' :: b -> a -> b
+c'' x _ =
+  x
+
+c' :: a -> b -> b
+c' _ y =
+  y
