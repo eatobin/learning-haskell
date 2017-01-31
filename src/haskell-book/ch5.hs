@@ -117,3 +117,9 @@ dd = aa cc 200
 aaa = 12 + bbb
 bbb = 10000 * ccc
 ccc = 4
+
+--addEm :: Int -> Int -> Int
+addEm :: Integral a => a -> a -> a
+--addEm :: Fractional a => a -> a -> a
+addEm x y =
+  x + y
