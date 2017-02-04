@@ -67,10 +67,13 @@ myAlph x = x < 'z'
 -- 3 b
 -- 4 c
 
+example ::  Num a => a
 example = 1
 
 -- page 149
 
+
+q1a :: Num a => a
 q1a = (* 9) 6
 -- 1a) 54 :: Num a => a
 q1b = head [(0,"doge"),(1,"kitteh")]
