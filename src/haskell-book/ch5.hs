@@ -46,7 +46,7 @@ f :: Num a => a -> a -> a
 f x y = x + y + 3
 
 myConcat :: String -> String
-myConcat x = x ++ " yo"
+myConcat x = x `mappend` " yo"
 
 myMult :: Fractional a => a -> a
 myMult x = (x / 3) * 5
@@ -101,7 +101,7 @@ q4f = 4 / q2y
 q5x = "Julie"
 q5y = " <3 "
 q5z = "Haskell"
-q5f = q5x ++ q5y ++ q5z
+q5f = q5x `mappend` q5y `mappend` q5z
 -- q5f :: [Char]
 
 -- bigNum = (^) 5 $ 10
