@@ -20,13 +20,13 @@ myString :: String
 myString = "Curry is awesome"
 
 curryIsA :: String -> String
-curryIsA s = s `mappend` "!"
+curryIsA s = s ++ "!"
 
 curryIsB :: String -> Char
 curryIsB s = s !! 4
 
 curryIsC :: String -> String
-curryIsC s = drop 9 s `mappend` "!"
+curryIsC s = drop 9 s ++ "!"
 
 thirdLetter :: String -> Char
 thirdLetter x = x !! 3
@@ -36,4 +36,4 @@ letterIndex x = myString !! x
 
 rvrs :: String
 rvrs =
-  drop 9 myString `mappend` " " `mappend` take 2 (drop 6 myString) `mappend` " " `mappend` take 5 myString
+  drop 9 myString ++ " " ++ take 2 (drop 6 myString) ++ " " ++ take 5 myString
