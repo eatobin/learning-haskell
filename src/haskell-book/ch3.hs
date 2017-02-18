@@ -6,7 +6,7 @@ waxOn =
     where
       z = 7
       y = z + 8
-      x = y ^ (2 :: Integer)
+      x = y ^ 2
 
 triple :: Int -> Int
 triple x =
