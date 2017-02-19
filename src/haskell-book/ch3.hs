@@ -1,3 +1,5 @@
+{-# OPTIONS -Wall #-}
+
 module Ch3 where
 
 waxOn :: Int
@@ -6,7 +8,7 @@ waxOn =
     where
       z = 7
       y = z + 8
-      x = y ^ 2
+      x = y ^ (2 :: Integer)
 
 triple :: Int -> Int
 triple x =
