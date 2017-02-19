@@ -1,4 +1,4 @@
-{-# OPTIONS_GHC -Wall -fwarn-tabs #-}
+{-# OPTIONS -Wall #-}
 
 module Ch4 where
 
