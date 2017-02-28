@@ -3,7 +3,16 @@
 
 module Ch5 where
 
--- 5.4
+--Given a function and its type, tell us what type results from applying
+--some or all of the arguments.
+--You can check your work in the REPL like this (using the first
+--question as an example):
+--Prelude> let f :: a -> a -> a -> a; f = undefined
+--Prelude> let x :: Char; x = undefined
+--Prelude> :t f x
+--It turns out that you can check the types of things that aren’t really
+--implemented yet, so long as you give GHCi an undefined to bind the
+--signature to.-- 5.4
 
 -- 1.a)
 -- c)
@@ -25,6 +34,8 @@ module Ch5 where
 -- 1 a
 -- 2 d
 -- 3 d
+-- let h :: (Num a, Num b) => a -> b -> b; h = undefined
+-- :t h 1.0 2
 -- 4 c
 -- 5 a
 -- 6 e
