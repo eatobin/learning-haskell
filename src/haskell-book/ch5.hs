@@ -34,6 +34,8 @@ module Ch5 where
 -- 1 a
 -- 2 d
 -- 3 d
+-- h = undefined :: (Num a, Num b) => a -> b -> b
+-- :t h 1.0 2
 -- let h :: (Num a, Num b) => a -> b -> b; h = undefined
 -- :t h 1.0 2
 -- 4 c
@@ -199,3 +201,19 @@ c'' x _ =
 c' :: a -> b -> b
 c' _ y =
   y
+
+r :: [a] -> [a]
+r []     = []
+r (_:xs) = xs
+
+co :: (b -> c) -> (a -> b) -> a -> c
+co  f' g x =
+  f'(g x)
+
+a' :: (a -> c) -> a -> a
+a' _ x =
+  x
+
+a'' :: (a -> b) -> a -> b
+a'' f'' x =
+  f'' x
