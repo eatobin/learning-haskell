@@ -265,3 +265,12 @@ yz = undefined
 
 xform :: (Xeo, Yeo) -> (Zeo, Zeo)
 xform (xot, yot) = (xz xot, yz yot)
+
+
+data Xbr
+data Ybr
+data Wbr
+data Zbr
+
+munge :: (Xbr -> Ybr) -> (Ybr -> (Wbr, Zbr)) -> Xbr -> Wbr
+munge xty ytwaz xub = fst(ytwaz (xty xub))
