@@ -217,3 +217,51 @@ a' _ x =
 a'' :: (a -> b) -> a -> b
 a'' f'' x =
   f'' x
+
+
+data Woot
+data Blah
+
+fink :: Woot -> Blah
+fink = undefined
+
+gimp :: (Blah, Woot) -> (Blah, Blah)
+gimp (b, w) = (b, fink w)
+
+
+fox :: Int -> String
+fox = undefined
+
+gorp :: String -> Char
+gorp = undefined
+
+hax :: Int -> Char
+hax v = head (fox v)
+
+
+data Apple
+data Berry
+data Chip
+
+quo :: Apple -> Berry
+quo = undefined
+
+wad :: Berry -> Chip
+wad = undefined
+
+elf :: Apple -> Chip
+elf ant = wad (quo ant)
+
+
+data Xeo
+data Yeo
+data Zeo
+
+xz :: Xeo -> Zeo
+xz = undefined
+
+yz :: Yeo -> Zeo
+yz = undefined
+
+xform :: (Xeo, Yeo) -> (Zeo, Zeo)
+xform (xot, yot) = (xz xot, yz yot)
