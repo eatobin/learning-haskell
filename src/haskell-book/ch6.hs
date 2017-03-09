@@ -23,3 +23,20 @@ data TisAnInteger =
 
 instance Eq TisAnInteger where
  (==) (TisAn x) (TisAn x') = x == x'
+
+
+data TwoIntegers =
+  Two Integer Integer
+
+instance Eq TwoIntegers where
+  (==) (Two d e) (Two d' e') =
+       d == d' && e == e'
+
+
+data StringOrInt =
+    TisAnInt Int
+  | TisAString String
+
+instance Eq StringOrInt where
+  (==) (TisAnInt i) (TisAnInt i')     = i == i'
+  (==) (TisAString s) (TisAString s') = s == s'
