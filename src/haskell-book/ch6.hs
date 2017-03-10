@@ -40,3 +40,5 @@ data StringOrInt =
 instance Eq StringOrInt where
   (==) (TisAnInt i) (TisAnInt i')     = i == i'
   (==) (TisAString s) (TisAString s') = s == s'
+  (==) _ _ = False
+  
