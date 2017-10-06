@@ -6,7 +6,7 @@ data Mood = Blah | Woot deriving Show
 
 changeMood :: Mood -> Mood
 changeMood Blah = Woot
-changeMood    _ = Blah
+changeMood _    = Blah
 
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome x =
