@@ -20,6 +20,19 @@ thirdLetter x = x !! 3
 letterIndex :: Int -> Char
 letterIndex x = myString !! x
 
-rvrs :: String
-rvrs =
-  drop 9 myString ++ " " ++ take 2 (drop 6 myString) ++ " " ++ take 5 myString
+rvrs :: String -> String
+rvrs str =
+  drop 9 str ++ " " ++ take 2 (drop 6 str) ++ " " ++ take 5 str
+
+printSecond :: IO ()
+printSecond =
+  putStrLn greeting
+  where
+    greeting = "Yarrrrr"
+
+main :: IO ()
+main = do
+  putStrLn greeting
+  printSecond
+  where
+    greeting = "Yarrrrr"
