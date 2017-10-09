@@ -8,6 +8,15 @@ changeMood :: Mood -> Mood
 changeMood Blah = Woot
 changeMood _    = Blah
 
+awesome :: [String]
+awesome = ["Papuchon", "curry", ":)"]
+
+also :: [String]
+also = ["Quake", "The Simons"]
+
+allAwesome :: [[String]]
+allAwesome = [awesome, also]
+
 isPalindrome :: (Eq a) => [a] -> Bool
 isPalindrome x =
   x == reverse x
