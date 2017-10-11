@@ -90,19 +90,19 @@ example = 1
 q1a :: Num a => a
 q1a = (* 9) 6
 -- 1a) 54 :: Num a => a
-q1b :: Num t => (t, [Char])
+q1b :: Num t => (t, String)
 q1b = head [(0,"doge"),(1,"kitteh")]
 -- 1b) (0,"doge") :: Num t => (Num t, [Char])
-q1c :: (Integer, [Char])
+q1c :: (Integer, String)
 q1c = head [(0 :: Integer,"doge"),(1,"kitteh")]
 -- 1c) (0,"doge") :: (Integer, [Char])
 --q1d = if False then True else False
 -- 1d) False :: Bool
 q1e :: Int
-q1e = length [(1 :: Integer),2,3,4,5]
+q1e = length [1 :: Integer,2,3,4,5]
 -- 1e) 5 :: Int
 q1f :: Bool
-q1f = length [(1 :: Integer),2,3,4] > length "TACOCAT"
+q1f = length [1 :: Integer,2,3,4] > length "TACOCAT"
 -- 1f) False :: Bool
 
 q2x :: Num t => t
@@ -121,15 +121,15 @@ q4f :: Fractional a => a
 q4f = 4 / q2y
 -- q4f :: Fractional a => a
 
-q5x :: [Char]
+q5x :: String
 q5x = "Julie"
-q5y :: [Char]
+q5y :: String
 q5y = " <3 "
-q5z :: [Char]
+q5z :: String
 q5z = "Haskell"
-q5f :: [Char]
+q5f :: String
 q5f = q5x ++ q5y ++ q5z
--- q5f :: [Char]
+-- q5f :: String
 
 -- bigNum = (^) 5 $ 10
 bigNum :: Num a => a
@@ -215,8 +215,8 @@ a' _ x =
   x
 
 a'' :: (a -> b) -> a -> b
-a'' f'' x =
-  f'' x
+a'' f'' =
+  f''
 
 
 data Woot
