@@ -45,6 +45,56 @@ module Ch5 where
 -- 8 a
 -- 9 c
 
+addStuff :: Integer -> Integer -> Integer
+addStuff a b = a + b + 5
+
+addTen :: Integer -> Integer
+addTen = addStuff 5
+
+fifteen :: Integer
+fifteen = addTen 5
+
+subtractStuff :: Integer -> Integer -> Integer
+subtractStuff x y = x - y - 10
+
+subtractOne :: Integer -> Integer
+subtractOne = subtractStuff 1
+
+-- λ> subtractOne 20
+-- -29
+-- 1 - 20 - 10
+
+negNine :: Integer
+negNine = subtractOne 0
+
+nonsense :: Bool -> Integer
+nonsense True = 805
+nonsense False = 31337
+
+curriedFunction :: Integer -> Bool -> Integer
+curriedFunction ii b =
+  ii + nonsense b
+
+uncurriedFunction :: (Integer, Bool) -> Integer
+uncurriedFunction (iii, bbbb) =
+  iii + nonsense bbbb
+
+anonymous :: Integer -> Bool -> Integer
+anonymous =
+  \ai ab -> ai + nonsense ab
+
+anonNested :: Integer -> Bool -> Integer
+anonNested =
+  \aii -> \abb -> aii + nonsense abb
+
+myCurry :: ((a, b) -> c) -> a -> b -> c
+myCurry ff a b = ff (a, b)
+
+myUncurry :: (a -> b -> c) -> (a, b) -> c
+myUncurry fff (a, b) = fff a b
+
+
+
 -- page 140
 
 ex2a :: a -> a -> a
