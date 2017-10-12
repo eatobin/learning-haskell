@@ -93,8 +93,6 @@ myCurry ff a b = ff (a, b)
 myUncurry :: (a -> b -> c) -> (a, b) -> c
 myUncurry fff (a, b) = fff a b
 
-
-
 -- page 140
 
 ex2a :: a -> a -> a
