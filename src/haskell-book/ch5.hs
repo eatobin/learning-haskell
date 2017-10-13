@@ -93,6 +93,27 @@ myCurry ff a b = ff (a, b)
 myUncurry :: (a -> b -> c) -> (a, b) -> c
 myUncurry fff (a, b) = fff a b
 
+sx :: Integer
+sx = 5
+
+sy :: Integer -> Integer
+sy = (2^)
+
+sz :: Integer -> Integer
+sz = (^(2 :: Integer))
+
+cv :: (Enum a, Num a, Eq a) => a -> Bool
+cv = (`elem` [1..5])
+
+hasTen :: (Num a, Eq a, Foldable t) => t a -> Bool
+hasTen = elem 10
+
+-- λ> sy sx
+-- 32
+
+-- λ> sz sx
+-- 25
+
 -- page 140
 
 ex2a :: a -> a -> a
