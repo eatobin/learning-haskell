@@ -3,17 +3,7 @@
 
 module Ch5 where
 
---Given a function and its type, tell us what type results from applying
---some or all of the arguments.
---You can check your work in the REPL like this (using the first
---question as an example):
---Prelude> let f :: a -> a -> a -> a; f = undefined
---Prelude> let x :: Char; x = undefined
---Prelude> :t f x
---It turns out that you can check the types of things that aren’t really
---implemented yet, so long as you give GHCi an undefined to bind the
---signature to.-- 5.4
-
+-- p 125:
 -- 1.a)
 -- c)
 
@@ -30,19 +20,115 @@ module Ch5 where
 -- e)
 
 -- page 134
+--Given a function and its type, tell us what type results from applying
+--some or all of the arguments.
+--You can check your work in the REPL like this (using the first
+--question as an example):
+--Prelude> let f :: a -> a -> a -> a; f = undefined
+--Prelude> let x :: Char; x = undefined
+--Prelude> :t f x
+--It turns out that you can check the types of things that aren’t really
+--implemented yet, so long as you give GHCi an undefined to bind the
+--signature to.
 
+-- λ> f1 :: a -> a -> a -> a; f1 = undefined
+-- *Ch5
+-- λ> :t f1
+-- f1 :: a -> a -> a -> a
+-- *Ch5
+-- λ> :t f1 'a'
+-- f1 'a' :: Char -> Char -> Char
 -- 1 a
+
+-- λ> g :: a -> b -> c -> b; g = undefined
+-- *Ch5
+-- λ> :t g
+-- g :: a -> b -> c -> b
+-- *Ch5
+-- λ> :t g 0 'c' "woot"
+-- g 0 'c' "woot" :: Char
 -- 2 d
+
+-- λ> h :: (Num a, Num b) => a -> b -> b; h = undefined
+-- *Ch5
+-- λ> :t h 1.0 2
+-- h 1.0 2 :: Num b => b
 -- 3 d
--- h = undefined :: (Num a, Num b) => a -> b -> b
--- :t h 1.0 2
--- let h :: (Num a, Num b) => a -> b -> b; h = undefined
--- :t h 1.0 2
+
+-- λ> h :: (Num a, Num b) => a -> b -> b; h = undefined
+-- λ> :t h 1 (5.5 :: Double)
+-- h 1 (5.5 :: Double) :: Double
 -- 4 c
+
+-- λ> jackal :: (Ord a, Eq b) => a -> b -> a; jackal = undefined
+-- *Ch5
+-- λ> :t jackal
+-- jackal :: (Eq b, Ord a) => a -> b -> a
+-- *Ch5
+-- λ> :t jackal "keyboard" "has the word jackal in it"
+-- jackal "keyboard" "has the word jackal in it" :: [Char]
 -- 5 a
+
+-- λ> :t jackal "keyboard"
+-- jackal "keyboard" :: Eq b => b -> [Char]
 -- 6 e
+
+-- The type of 1 is Num a => a. When you pass it as the first argument to kessel,
+-- its type is restricted to (Num a, Ord a) => a because kessel requires Ord for its first argument.
+-- And since the type of the result is the same as that of the first argument, you get (Num a, Ord a) => a as the result type.
+--
+-- Note that this has nothing to do with the type of the second argument.
+-- I imagine the second argument is just there to confuse you. If the function were:
+--
+-- kessel :: Ord a => a -> a
+--
+-- then the type of kessel 1 would still be (Num a, Ord a) => a.
+-- The Num is there because that's the type of 1, not because of the type of kessel.
+--
+-- The type of kessel 'd' 2 is Char, as opposed to Ord Char => Char,
+-- because Char is already a concrete type that implements Ord, so the restriction is not necessary.
+
+-- λ> kessel :: Ord a => a -> a; kessel = undefined
+-- *Ch5
+-- λ> :t kessel
+-- kessel :: Ord a => a -> a
+-- *Ch5
+-- λ> :t kessel 1
+-- kessel 1 :: (Num a, Ord a) => a
+-- *Ch5
+-- λ> :t kessel 'v'
+-- kessel 'v' :: Char
+-- *Ch5
+-- λ> :t kessel (1 :: Integer)
+-- kessel (1 :: Integer) :: Integer
+-- λ> kessel :: Ord a => a -> a; kessel x = x
+-- *Ch5
+-- λ> kessel 1
+-- 1
+-- *Ch5
+-- λ> kessel 's'
+-- 's'
+-- *Ch5
+-- λ> kessel True
+-- True
+-- *Ch5
+-- λ> data Mood = Blah | Woot deriving Show
+-- *Ch5
+-- λ> :t kessel Blah
+-- <interactive>:1:1: error:
+--     • No instance for (Ord Mood) arising from a use of ‘kessel’
+--     • In the expression: kessel Blah
+-- *Ch5
 -- 7 d
+
+-- λ> :t kessel 1 (2 :: Integer)
+-- kessel 1 (2 :: Integer) :: (Num a, Ord a) => a
+-- *Ch5
 -- 8 a
+
+-- λ> :t kessel (1 :: Integer) 2
+-- kessel (1 :: Integer) 2 :: Integer
+-- *Ch5
 -- 9 c
 
 addStuff :: Integer -> Integer -> Integer
