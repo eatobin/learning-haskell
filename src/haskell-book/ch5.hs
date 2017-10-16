@@ -378,7 +378,6 @@ a'' :: (a -> b) -> a -> b
 a'' f'' =
   f''
 
-
 data Woot
 data Blah
 
