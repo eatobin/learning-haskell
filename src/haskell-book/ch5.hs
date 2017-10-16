@@ -214,6 +214,8 @@ ex3 _ y = y
 f :: Num a => a -> a -> a
 f x y = x + y + 3
 
+-- page 145
+
 myConcat :: String -> String
 myConcat x = x ++ " yo"
 
@@ -241,7 +243,6 @@ example = 1
 
 -- page 149
 
-
 q1a :: Num a => a
 q1a = (* 9) 6
 -- 1a) 54 :: Num a => a
@@ -251,7 +252,8 @@ q1b = head [(0,"doge"),(1,"kitteh")]
 q1c :: (Integer, String)
 q1c = head [(0 :: Integer,"doge"),(1,"kitteh")]
 -- 1c) (0,"doge") :: (Integer, [Char])
---q1d = if False then True else False
+-- q1d :: Bool
+-- q1d = if False then True else False
 -- 1d) False :: Bool
 q1e :: Int
 q1e = length [1 :: Integer,2,3,4,5]
@@ -315,9 +317,12 @@ bbb = 10000 * ccc
 ccc :: Num t => t
 ccc = 4
 
---addEm :: Int -> Int -> Int
-addEm :: Integral a => a -> a -> a
---addEm :: Fractional a => a -> a -> a
+-- page 151
+
+-- addEm :: Int -> Int -> Int
+-- addEm :: Integral a => a -> a -> a
+-- addEm :: Fractional a => a -> a -> a
+addEm :: Num a => a -> a -> a
 addEm x y =
   x + y
 
