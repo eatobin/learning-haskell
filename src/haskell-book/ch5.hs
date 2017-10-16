@@ -165,13 +165,13 @@ uncurriedFunction :: (Integer, Bool) -> Integer
 uncurriedFunction (iii, bbbb) =
   iii + nonsense bbbb
 
-anonymous :: Integer -> Bool -> Integer
-anonymous =
-  \ai ab -> ai + nonsense ab
+-- anonymous :: Integer -> Bool -> Integer
+-- anonymous =
+--   \ai ab -> ai + nonsense ab
 
-anonNested :: Integer -> Bool -> Integer
-anonNested =
-  \aii -> \abb -> aii + nonsense abb
+-- anonNested :: Integer -> Bool -> Integer
+-- anonNested =
+--   \aii -> \abb -> aii + nonsense abb
 
 myCurry :: ((a, b) -> c) -> a -> b -> c
 myCurry ff a b = ff (a, b)
