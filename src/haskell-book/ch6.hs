@@ -10,6 +10,13 @@ instance Eq HiLo where
   (==) Lo Lo = True
   (==) _ _   = False
 
+newtype MyHand =
+  MyHand HiLo
+
+instance Eq MyHand where
+  (==) (MyHand hand) (MyHand hand') =
+    hand == hand'
+
 data DayOfWeek =
   Mon | Tue | Wed | Thu | Fri | Sat | Sun
 
