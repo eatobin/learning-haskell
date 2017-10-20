@@ -19,6 +19,7 @@ instance Eq MyHand where
 
 data DayOfWeek =
   Mon | Tue | Wed | Thu | Fri | Sat | Sun
+  deriving (Show)
 
 data Date =
   Date DayOfWeek Int
@@ -32,6 +33,12 @@ instance Eq DayOfWeek where
   (==) Sat Sat = True
   (==) Sun Sun = True
   (==) _ _     = False
+
+instance Ord DayOfWeek where
+  compare Fri Fri = EQ
+  compare Fri _   = GT
+  compare _ Fri   = LT
+  compare _ _     = EQ
 
 instance Eq Date where
   (==) (Date weekday dayOfMonth)
