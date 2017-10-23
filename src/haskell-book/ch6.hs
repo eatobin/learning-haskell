@@ -215,3 +215,71 @@ addWeird' x y =
   else x
 
 -- But Integer does imply Ord!
+
+-- page 206
+
+-- 1 c
+-- 2 a
+-- 3 a
+-- 4 d
+-- 5 a
+
+newtype Person = Person Bool
+                 deriving Show
+
+printPerson :: Person -> IO ()
+printPerson = print
+
+-- typechecks after adding Show
+
+data Mood = Blah
+          | Woot deriving (Eq, Show)
+
+settleDown :: Mood -> Mood
+settleDown x =
+  if x == Woot
+  then Blah
+  else x
+
+-- typechecks after adding Eq
+
+type Subject = String
+type Verb = String
+type Object = String
+
+data Sentence =
+  Sentence Subject Verb Object
+  deriving (Eq, Show)
+
+-- s1 = Sentence "dogs" "drool" -- Needs an Object
+s2 :: Sentence
+s2 = Sentence "Julie" "loves" "dogs"
+
+-- λ> s2
+-- Sentence "Julie" "loves" "dogs"
+-- deriving Show -- all that's needed
+
+newtype Rocks =
+  Rocks String deriving (Eq, Show)
+
+newtype Yeah =
+  Yeah Bool deriving (Eq, Show)
+
+data Papu =
+  Papu Rocks Yeah
+  deriving (Eq, Show)
+
+-- phew = Papu "chases" True
+-- Nope!
+
+truth :: Papu
+truth = Papu (Rocks "chomskydoz")
+             (Yeah True)
+
+equalityForall :: Papu -> Papu -> Bool
+equalityForall p p' = p == p'
+
+-- comparePapus :: Papu -> Papu -> Bool
+-- comparePapus p p' = p > p'
+
+-- Nope - no instance of Ord to compare with
