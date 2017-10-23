@@ -2,6 +2,8 @@
 
 module Ch6 where
 
+import Data.List
+
 data HiLo =
   Hi | Lo
 
@@ -283,3 +285,54 @@ equalityForall p p' = p == p'
 -- comparePapus p p' = p > p'
 
 -- Nope - no instance of Ord to compare with
+
+iBall :: Num a => a
+-- iBall :: a -- Nope
+iBall = 1
+
+-- flem :: Float
+-- flem :: Num a => a
+flem :: Fractional a => a
+flem = 1.0
+
+-- froth :: Float
+froth :: RealFrac a => a
+froth = 1.0
+
+-- freud :: a -> a
+freud :: Ord a => a -> a
+freud x = x
+
+-- faux :: a -> a
+faux :: Int -> Int
+faux x = x
+
+myX :: Int
+myX = 1 :: Int
+
+sigmund :: Int -> Int
+-- sigmund :: a -> a
+sigmund _ = myX
+
+-- Nope. Only works for Ints because result must be a concrete type of Int
+
+sharp :: Int -> Int
+-- sharp :: Num a => a -> a
+sharp _ = myX
+
+-- Nope. Still only works for Ints because result must be a concrete type of Int
+
+-- jung :: Ord a => [a] -> a
+jung :: [Int] -> Int
+jung = minimum
+
+young :: Ord a => [a] -> a
+-- young :: String -> Char
+young = minimum
+
+mySort :: String -> String
+mySort = sort
+
+-- signifier :: String -> Char
+signifier :: Ord a => [a] -> a
+signifier = minimum
