@@ -148,3 +148,46 @@ instance (Eq a, Eq b) => Eq (EitherOr a b) where
 -- True
 -- λ> Goodbye "cat" == Goodbye "cats"
 -- False
+
+class Numberish a where
+  fromNumber :: Integer -> a
+  toNumber :: a -> Integer
+
+newtype Age =
+  Age Integer
+  deriving (Eq, Show)
+
+instance Numberish Age where
+  fromNumber = Age
+  toNumber (Age n) = n
+
+newtype Year =
+  Year Integer
+  deriving (Eq, Show)
+
+instance Numberish Year where
+  fromNumber = Year
+  toNumber (Year n) = n
+
+sumNumberish :: Numberish a => a -> a -> a
+sumNumberish a b = fromNumber summed
+  where
+    integerOfA = toNumber a
+    integerOfB = toNumber b
+    summed =
+      integerOfA + integerOfB
+
+-- λ> sumNumberish (Year 100) (Year 100)
+-- Year 200
+
+sumNumberish' :: Numberish a => a -> a -> a
+sumNumberish' a b = fromNumber (toNumber a + toNumber b)
+
+-- λ> sumNumberish' (Year 100) (Year 100)
+-- Year 200
+
+sumNumberish'' :: Numberish a => a -> a -> Integer
+sumNumberish'' a b = toNumber a + toNumber b
+
+-- λ> sumNumberish'' (Year 100) (Year 100)
+-- 200
