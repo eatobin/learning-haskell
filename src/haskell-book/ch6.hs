@@ -152,6 +152,7 @@ instance (Eq a, Eq b) => Eq (EitherOr a b) where
 class Numberish a where
   fromNumber :: Integer -> a
   toNumber :: a -> Integer
+  defaultNumber :: a
 
 newtype Age =
   Age Integer
@@ -160,6 +161,7 @@ newtype Age =
 instance Numberish Age where
   fromNumber = Age
   toNumber (Age n) = n
+  defaultNumber = Age 65
 
 newtype Year =
   Year Integer
@@ -168,6 +170,7 @@ newtype Year =
 instance Numberish Year where
   fromNumber = Year
   toNumber (Year n) = n
+  defaultNumber = Year 1988
 
 sumNumberish :: Numberish a => a -> a -> a
 sumNumberish a b = fromNumber summed
@@ -191,3 +194,24 @@ sumNumberish'' a b = toNumber a + toNumber b
 
 -- λ> sumNumberish'' (Year 100) (Year 100)
 -- 200
+-- λ> fromNumber 88 :: Age
+-- Age 88
+-- λ> defaultNumber ::Age
+-- Age 65
+
+addWeird :: (Ord a, Num a) => a -> a -> a
+addWeird x y =
+  if x > 1
+  then x + y
+  else x
+
+-- The problem is that having a Num constraint (alone) on our type a isn’t
+-- enough. Num doesn’t imply Ord.
+
+addWeird' ::  Integer -> Integer -> Integer
+addWeird' x y =
+  if x > 1
+  then x + y
+  else x
+
+-- But Integer does imply Ord!
