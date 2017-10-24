@@ -341,3 +341,8 @@ chk :: Eq b => (a -> b) -> a -> b -> Bool
 chk f a b = f a > b
 
 chk (\_ -> 'g') 2 'r'
+
+arith :: Num b => (a -> b)-> Integer-> a-> b
+arith f a b = f a + b
+
+arith (+4.1) 2 6.0
