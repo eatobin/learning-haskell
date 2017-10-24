@@ -338,4 +338,6 @@ signifier :: Ord a => [a] -> a
 signifier = minimum
 
 chk :: Eq b => (a -> b) -> a -> b -> Bool
-chk = (+3) 2 9
+chk f a b = f a > b
+
+chk (\_ -> 'g') 2 'r'
