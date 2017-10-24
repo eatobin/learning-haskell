@@ -1,4 +1,4 @@
-{-# OPTIONS -Wall #-}
+ u{-# OPTIONS -Wall #-}
 
 module Ch6 where
 
@@ -336,3 +336,6 @@ mySort = sort
 -- signifier :: String -> Char
 signifier :: Ord a => [a] -> a
 signifier = minimum
+
+chk :: Eq b => (a -> b) -> a -> b -> Bool
+chk = (+3) 2 9
