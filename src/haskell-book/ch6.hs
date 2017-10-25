@@ -1,4 +1,4 @@
- u{-# OPTIONS -Wall #-}
+ {-# OPTIONS -Wall #-}
 
 module Ch6 where
 
@@ -338,11 +338,12 @@ signifier :: Ord a => [a] -> a
 signifier = minimum
 
 chk :: Eq b => (a -> b) -> a -> b -> Bool
-chk f a b = f a > b
+chk f a b = f a == b
 
-chk (\_ -> 'g') 2 'r'
+-- chk (\_ -> 'g') 2 'r'
 
-arith :: Num b => (a -> b)-> Integer-> a-> b
-arith f a b = f a + b
+arith :: Num b => (a -> b) -> Integer -> a -> b
+-- arith f x y = undefined
+arith f a b = f (a b)
 
-arith (+4.1) 2 6.0
+-- arith (+4.1) 2 6.0
