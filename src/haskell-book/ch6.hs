@@ -340,10 +340,16 @@ signifier = minimum
 chk :: Eq b => (a -> b) -> a -> b -> Bool
 chk f a b = f a == b
 
--- chk (\_ -> 'g') 2 'r'
+-- λ> chk (\_ -> 'g') 2 'r'
+-- False
+-- λ> chk (\_ -> 'g') 2 'g'
+-- True
 
 arith :: Num b => (a -> b) -> Integer -> a -> b
--- arith f x y = undefined
-arith f a b = f (a b)
+arith f n a = f a * fromInteger n
 
--- arith (+4.1) 2 6.0
+-- λ> arith (+4.1) 2 6.0
+-- 20.2
+-- λ> arith (*9) 3 2.0
+-- 54.0
+-- a and b = Fractional type
