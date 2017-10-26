@@ -63,3 +63,65 @@ data WherePenguinsLive =
   | SouthAfrica
   | SouthAmerica
   deriving (Eq, Show)
+
+newtype Penguin =
+  Peng WherePenguinsLive
+  deriving (Eq, Show)
+
+-- is it South Africa? If so, return True
+isSouthAfrica :: WherePenguinsLive -> Bool
+isSouthAfrica SouthAfrica = True
+isSouthAfrica _           = False
+
+-- λ> isSouthAfrica Galapagos
+-- False
+-- λ> isSouthAfrica SouthAfrica
+-- True
+
+gimmeWhereTheyLive :: Penguin -> WherePenguinsLive
+gimmeWhereTheyLive (Peng whereitlives) =
+  whereitlives
+
+-- λ> gimmeWhereTheyLive (Peng SouthAmerica)
+-- SouthAmerica
+
+humboldt :: Penguin
+humboldt = Peng SouthAmerica
+
+gentoo :: Penguin
+gentoo = Peng Antarctica
+
+macaroni :: Penguin
+macaroni = Peng Antarctica
+
+little :: Penguin
+little = Peng Australia
+
+galapagos :: Penguin
+galapagos = Peng Galapagos
+
+-- λ> gimmeWhereTheyLive little
+-- Australia
+-- λ> gimmeWhereTheyLive gentoo
+-- Antarctica
+
+galapagosPenguin :: Penguin -> Bool
+galapagosPenguin (Peng Galapagos) = True
+galapagosPenguin _                = False
+
+antarcticPenguin :: Penguin -> Bool
+antarcticPenguin (Peng Antarctica) = True
+antarcticPenguin _                 = False
+
+-- λ> antarcticPenguin (Peng Antarctica)
+-- True
+
+antarcticOrGalapagos :: Penguin -> Bool
+antarcticOrGalapagos p =
+  galapagosPenguin p ||
+  antarcticPenguin p
+
+-- λ> antarcticOrGalapagos (Peng Galapagos)
+-- True
+-- λ> antarcticOrGalapagos (Peng SouthAfrica)
+-- False
