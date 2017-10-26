@@ -55,3 +55,11 @@ mflip f x y =
 isItTwo :: Integer -> Bool
 isItTwo 2 = True
 isItTwo _ = False
+
+data WherePenguinsLive =
+    Galapagos
+  | Antarctica
+  | Australia
+  | SouthAfrica
+  | SouthAmerica
+  deriving (Eq, Show)
