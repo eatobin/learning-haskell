@@ -125,3 +125,6 @@ antarcticOrGalapagos p =
 -- True
 -- λ> antarcticOrGalapagos (Peng SouthAfrica)
 -- False
+
+fox :: (a, b) -> (c, d) -> ((b, d), (a, c))
+fox (a, b) (c, d) = ((b, d), (a, c))
