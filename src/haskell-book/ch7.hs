@@ -51,3 +51,7 @@ mflip :: (t2 -> t1 -> t) -> t1 -> t2 -> t
 -- mflip f = \x -> \y -> f y x
 mflip f x y =
   f y x
+
+isItTwo :: Integer -> Bool
+isItTwo 2 = True
+isItTwo _ = False
