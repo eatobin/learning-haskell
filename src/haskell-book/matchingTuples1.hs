@@ -20,24 +20,3 @@ fst3 (x, _, _) = x
 
 third3 :: (a, b, c) -> c
 third3 (_, _, z) = z
-
--- pg 235
-
-k :: (a, b) -> a
-k (x, _) = x
-
-k2 :: String
-k2 = k ("three", (1 :: Integer) + (2 :: Integer))
-
--- b) What is the type of k2? Is it the same type as k1 or k3? Nope! (Integer)
-
-k1 :: Integer
-k1 = k ((4 :: Integer) - (1 :: Integer), 10 :: Integer)
-
-k3 :: Integer
-k3 = k (3, True)
-
--- c) k1 & k3 = 3
-
-fur :: (a, b, c) -> (d, e, f) -> ((a, d), (c, f))
-fur (a, _, c) (d, _, f) = ((a, d), (c, f))
