@@ -163,3 +163,24 @@ fur (a, _, c) (d, _, f) = ((a, d), (c, f))
 --     False -> "no"
 --   where
 --     y = xs == reverse xs
+
+-- pq 238
+
+functionC :: Ord a => a -> a -> a
+functionC x y =
+  case (x > y) of
+    True -> x
+    False -> y
+
+ifEvenAdd2 :: Integral a => a -> a
+ifEvenAdd2 x =
+  case even x of
+    True -> x + 2
+    False -> x
+
+nums :: (Num a, Ord a, Integral b) => a -> b
+nums x =
+  case compare x 0 of
+    LT -> -1
+    GT -> 1
+    EQ -> 0
