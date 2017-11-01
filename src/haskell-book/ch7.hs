@@ -249,3 +249,35 @@ employeeRank f e e' =
     GT -> reportBoss e e'
     EQ -> putStrLn "Neither employee is the boss"
     LT -> reportBoss e' e
+
+dodgy :: Integer -> Integer -> Integer
+dodgy x y = x + y + 10
+
+oneIsOne :: (Integer -> Integer)
+oneIsOne = dodgy 1
+
+oneIsTwo :: (Integer -> Integer)
+oneIsTwo = flip dodgy 2
+
+-- λ> oneIsOne 1
+-- 12
+-- λ> dodgy 1 1
+-- 12
+-- λ> dodgy 2 2
+-- 14
+-- λ> dodgy 1 2
+-- 13
+-- λ> dodgy 2 1
+-- 13
+-- λ> oneIsOne 1
+-- 12
+-- λ> oneIsOne 2
+-- 13
+-- λ> oneIsTwo 1
+-- 13
+-- λ> oneIsTwo 2
+-- 14
+-- λ> oneIsOne 3
+-- 14
+-- λ> oneIsTwo 3
+-- 15
