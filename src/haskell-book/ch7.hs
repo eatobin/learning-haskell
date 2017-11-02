@@ -281,3 +281,62 @@ oneIsTwo = flip dodgy 2
 -- 14
 -- λ> oneIsTwo 3
 -- 15
+
+myAbs :: Integer -> Integer
+myAbs x
+  | x < 0 = -x
+  | otherwise = x
+
+bloodNa :: Integer -> String
+bloodNa x
+  | x < 135 = "too low"
+  | x > 145 = "too high"
+  | otherwise = "just right"
+
+dogYears :: Integer -> Integer
+dogYears x
+  | x <= 0 = 0
+  | x <= 1 = x * 15
+  | x <= 2 = x * 12
+  | x <= 4 = x * 8
+  | otherwise = x * 6
+
+avgGrade :: (Fractional a, Ord a) => a -> Char
+avgGrade x
+  | y >= 0.9 = 'A'
+  | y >= 0.8 = 'B'
+  | y >= 0.7 = 'C'
+  | y >= 0.59 = 'D'
+  | otherwise = 'F'
+  where
+    y = x / 100
+
+-- p 253
+
+-- 3b
+
+--4
+-- λ> :t reverse
+-- reverse :: [a] -> [a]
+
+pal :: Eq a => [a] -> Bool
+pal xs
+  | xs == reverse xs = True
+  | otherwise = False
+
+-- 6b
+
+-- 7 (Num a, Ord a)
+
+numbers :: (Num a, Ord a) => a -> Integer
+numbers x
+  | x < 0 = -1
+  | x == 0 = 0
+  | otherwise = 1
+
+-- λ> numbers (-8)
+-- -1
+-- λ> numbers 0.8
+-- 1
+-- λ> numbers (2/3 :: Rational)
+-- 1
