@@ -411,3 +411,15 @@ lengthFilterA =
 
 -- λ> lengthFilterA "cata"
 -- 2
+
+print :: Show a => a -> IO ()
+print a =
+  putStr (show a)
+
+print' :: Show a => a -> IO ()
+print' =
+  putStr . show
+
+print2 :: Show a => a -> IO ()
+print2 a =
+  (putStrLn . show) a
