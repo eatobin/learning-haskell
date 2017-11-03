@@ -424,7 +424,6 @@ print2 :: Show a => a -> IO ()
 print2 a =
   (putStrLn . show) a
 
-
 -- p 262
 
 -- 1 d
@@ -432,3 +431,18 @@ print2 a =
 -- 3 d
 -- 4 b
 -- 5 a
+
+tensDigit :: Integral a => a -> a
+tensDigit x = d
+  where xLast = div x 10
+        d = mod xLast 10
+
+tensDigit' :: Integral a => a -> a
+tensDigit' x = d
+  where xLast = (fst . divMod x) 10
+        d = mod xLast 10
+
+hunsD :: Integral a => a -> a
+hunsD x = d
+  where xLast = (fst . divMod x) 100
+        d = mod xLast 10
