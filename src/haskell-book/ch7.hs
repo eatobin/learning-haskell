@@ -423,3 +423,12 @@ print' =
 print2 :: Show a => a -> IO ()
 print2 a =
   (putStrLn . show) a
+
+
+-- p 262
+
+-- 1 d
+-- 2 b
+-- 3 d
+-- 4 b
+-- 5 a
