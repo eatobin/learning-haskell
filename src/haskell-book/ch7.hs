@@ -340,3 +340,31 @@ numbers x
 -- 1
 -- λ> numbers (2/3 :: Rational)
 -- 1
+
+negateComp :: Integer
+negateComp =
+  negate . sum $ [1,2,3,4,5]
+
+negateComp' :: Integer
+negateComp' =
+  (negate . sum) [1,2,3,4,5]
+
+takeAndReverse :: [Integer]
+takeAndReverse =
+  take 5 . reverse $ [1..10]
+
+takeAndReverse' :: [Integer]
+takeAndReverse' =
+  (take 5 . reverse) [1..10]
+
+takeAndEnum :: [Integer]
+takeAndEnum =
+  take 5 . enumFrom $ 3
+
+takeAndEnum' :: [Integer]
+takeAndEnum' =
+  (take 5 . enumFrom) 3
+
+takeAndEnum3 :: Integer -> [Integer]
+takeAndEnum3 =
+  take 5 . enumFrom
