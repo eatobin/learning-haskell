@@ -349,6 +349,9 @@ negateComp' :: Integer
 negateComp' =
   (negate . sum) [1,2,3,4,5]
 
+-- λ> negateComp
+-- -15
+
 takeAndReverse :: [Integer]
 takeAndReverse =
   take 5 . reverse $ [1..10]
@@ -356,6 +359,9 @@ takeAndReverse =
 takeAndReverse' :: [Integer]
 takeAndReverse' =
   (take 5 . reverse) [1..10]
+
+-- λ> takeAndReverse
+-- [10,9,8,7,6]
 
 takeAndEnum :: [Integer]
 takeAndEnum =
@@ -368,3 +374,40 @@ takeAndEnum' =
 takeAndEnum3 :: Integer -> [Integer]
 takeAndEnum3 =
   take 5 . enumFrom
+
+-- λ> takeAndEnum
+-- [3,4,5,6,7]
+
+takeAndFilter :: [Integer]
+takeAndFilter =
+  take 5 . filter even . enumFrom $ 3
+
+takeAndFilter' :: [Integer]
+takeAndFilter' =
+  (take 5 . filter even . enumFrom) 3
+
+-- λ> takeAndFilter
+-- [4,6,8,10,12]
+
+negateComp77 :: [Integer] -> Integer
+negateComp77 =
+  negate . sum
+
+-- λ> negateComp77 [1,2]
+-- -3
+
+fat :: Int -> [Int] -> Int
+fat =
+  foldr (+)
+
+-- λ> fat 0 [1,2]
+-- 3
+-- λ> fat 1 [1,2]
+-- 4
+
+lengthFilterA :: String -> Int
+lengthFilterA =
+  length . filter (== 'a')
+
+-- λ> lengthFilterA "cata"
+-- 2
