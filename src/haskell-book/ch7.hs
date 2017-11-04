@@ -473,3 +473,9 @@ foldBool2 x y b
 -- 2
 -- λ> foldBool2 1 2 True
 -- 1
+
+g :: (a -> b) -> (a, c) -> (b, c)
+g f (t1,t2) = (f t1, t2)
+
+-- λ> g (+2) (1,1)
+-- (3,1)
