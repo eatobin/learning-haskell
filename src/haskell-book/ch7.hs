@@ -437,6 +437,9 @@ tensDigit x = d
   where xLast = div x 10
         d = mod xLast 10
 
+-- λ> tensDigit 568
+-- 6
+
 tensDigit' :: Integral a => a -> a
 tensDigit' x = d
   where xLast = (fst . divMod x) 10
@@ -447,13 +450,26 @@ hunsD x = d
   where xLast = (fst . divMod x) 100
         d = mod xLast 10
 
+-- λ> hunsD 568
+-- 5
+
 foldBool1 :: a -> a -> Bool -> a
 foldBool1 x y b =
   case b of
     True -> x
     False -> y
 
+-- λ> foldBool1 1 2 True
+-- 1
+-- λ> foldBool1 1 2 False
+-- 2
+
 foldBool2 :: a -> a -> Bool -> a
 foldBool2 x y b
   | b = x
   | otherwise = y
+
+-- λ> foldBool2 1 2 False
+-- 2
+-- λ> foldBool2 1 2 True
+-- 1
