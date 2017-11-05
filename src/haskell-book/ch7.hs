@@ -479,3 +479,56 @@ g f (t1,t2) = (f t1, t2)
 
 -- λ> g (+2) (1,1)
 -- (3,1)
+
+curry' :: ((a, b) -> c) -> a -> b -> c
+curry' f a b = f (a, b)
+
+uncurry' :: (a -> b -> c) -> ((a, b) -> c)
+uncurry' f (a, b) = f a b
+
+-- uncurried function,
+-- takes a tuple of its arguments
+
+add :: (Int, Int) -> Int
+add (x, y) = x + y
+
+add' :: Int -> Int -> Int
+add' = curry' add
+
+add'' :: (Int, Int) -> Int
+add'' = uncurry' add'
+
+-- λ> add (4,5)
+-- 9
+-- λ> add'' (4,5)
+-- 9
+-- λ> add' 4 5
+-- 9
+
+-- f a b = a + b
+
+-- is equivalent to
+
+-- f = \a -> (\b -> a + b)
+
+lengthFilterA2 :: Char -> String -> Int
+lengthFilterA2 c =
+  length . filter (== c)
+
+-- λ> lengthFilterA2 'a' "cata"
+-- 2
+-- λ> lengthFilterA2 'o' "dog"
+-- 1
+-- λ> lengthFilterA2 'o' "dig"
+-- 0
+
+lengthFilterAxN :: Char -> Int -> String -> Int
+lengthFilterAxN c n =
+  (*n) . length . filter (== c)
+
+-- λ> lengthFilterAxN 'a' 3 "cata"
+-- 6
+-- λ> lengthFilterAxN 'o' 33 "dog"
+-- 33
+-- λ> lengthFilterAxN 'o' 33 "dig"
+-- 0
