@@ -44,3 +44,35 @@ applyTimes' n f b = f . applyTimes' (n-1) f $ b
 
 -- λ> applyTimes' 6 (+2) 5
 -- 17
+
+fibonacci :: Integral a => a -> a
+fibonacci 0 = 0
+fibonacci 1 = 1
+fibonacci x =
+  fibonacci (x - 1) + fibonacci (x - 2)
+
+-- λ> fibonacci 6
+-- 8
+
+-- Scala:
+-- def fib(n: Int): Int = {
+--   @annotation.tailrec
+--   def go(a: Int, b: Int, ctr: Int): Int = {
+--     if (ctr == n) a + b
+--     else go(b, a + b, ctr + 1)
+--   }
+--   go(0, 1, 3)
+-- }
+
+dividedBy :: Integral a => a -> a -> (a, a)
+dividedBy num denom =
+  go num denom 0
+  where go n d count
+         | n < d = (count, n)
+         | otherwise =
+            go (n - d) d (count + 1)
+
+-- λ> dividedBy 20 4
+-- (5,0)
+-- λ> dividedBy 21 4
+-- (5,1)
