@@ -121,3 +121,21 @@ frappe = flippy "haha"
 
 -- λ> frappe "one"
 -- "one mrow haha"
+
+-- λ> appedCatty "woohoo!"
+-- "whoops mrow woohoo!"
+
+-- λ> frappe "1"
+-- "1 mrow haha"
+
+-- λ> frappe (appedCatty "2")
+-- "whoops mrow 2 mrow haha"
+
+-- λ> appedCatty (frappe "blue")
+-- "whoops mrow blue mrow haha"
+
+-- λ> cattyConny (frappe "pink")(cattyConny "green" (appedCatty "blue"))
+-- "pink mrow haha mrow green mrow whoops mrow blue"
+
+-- λ> cattyConny (flippy "Pugs" "are") "awesome"
+-- "are mrow Pugs mrow awesome"
