@@ -88,3 +88,36 @@ dividedBy num denom =
 -- (5,0)
 -- λ> dividedBy 21 4
 -- (5,1)
+
+-- page 294
+
+-- 1 d
+-- 2 b
+-- 3 d
+-- 4 b
+
+-- page 295
+
+cattyConny :: String -> String -> String
+cattyConny x y = x ++ " mrow " ++ y
+
+-- λ> cattyConny "one" "two"
+-- "one mrow two"
+
+flippy :: String -> String -> String
+flippy = flip cattyConny
+
+-- λ> flippy "one" "two"
+-- "two mrow one"
+
+appedCatty :: String -> String
+appedCatty = cattyConny "whoops"
+
+-- λ> appedCatty "two"
+-- "whoops mrow two"
+
+frappe :: String -> String
+frappe = flippy "haha"
+
+-- λ> frappe "one"
+-- "one mrow haha"
