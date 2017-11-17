@@ -139,3 +139,35 @@ frappe = flippy "haha"
 
 -- λ> cattyConny (flippy "Pugs" "are") "awesome"
 -- "are mrow Pugs mrow awesome"
+
+mySum :: (Eq a, Num a) => a -> a
+mySum 1 = 1
+mySum x =
+  x + mySum (x - 1)
+
+-- λ> mySum 5
+-- 15
+-- λ> mySum 54
+-- 1485
+-- λ> mySum 5 :: Double
+-- 15.0
+
+myMult :: Integral a => a -> a -> a
+myMult num pow =
+  go num pow 1 num
+  where
+    go n p count total
+      | count == p = total
+      | otherwise =
+          go n p (count + 1) (total + n)
+
+-- λ> myMult 3 1
+-- 3
+-- λ> myMult 3 2
+-- 6
+-- λ> myMult 3 3
+-- 9
+-- λ> myMult 3 4
+-- 12
+-- λ> myMult (3:: Int) 4
+-- 12
