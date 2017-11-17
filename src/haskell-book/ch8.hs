@@ -7,6 +7,9 @@ factorial 0 = 1
 factorial n =
   n * factorial (n - 1)
 
+-- λ> factorial 6
+-- 720
+
 inc :: Num a => a -> a
 inc = (+1)
 
@@ -35,6 +38,11 @@ applyTimes :: (Eq a, Num a) => a -> (b -> b) -> b -> b
 applyTimes 0 _ b = b
 applyTimes n f b = f (applyTimes (n-1) f b)
 
+-- λ> applyTimes 0 (+1) 8
+-- 8
+-- λ> applyTimes 4 (+1) 8
+-- 12
+
 incTimes' :: (Eq a, Num a) => a -> a -> a
 incTimes' times = applyTimes times (+1)
 
@@ -53,6 +61,9 @@ fibonacci x =
 
 -- λ> fibonacci 6
 -- 8
+-- λ> fibonacci 22
+-- 17711
+
 
 -- Scala:
 -- def fib(n: Int): Int = {
