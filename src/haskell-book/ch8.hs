@@ -171,3 +171,15 @@ myMult num pow =
 -- 12
 -- λ> myMult (3:: Int) 4
 -- 12
+
+dividedBy' :: Integral a => a -> a -> (a, a)
+dividedBy' num denom =
+  go (abs num) (abs denom) 0
+  where
+    sign = if (num > 0 && denom > 0) || (num < 0 && denom < 0)
+      then 1
+      else (-1)
+    go n d count
+      | n < d = (count * sign, n)
+      | otherwise =
+          go (n - d) d (count + 1)
