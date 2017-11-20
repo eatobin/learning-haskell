@@ -172,6 +172,15 @@ myMult num pow =
 -- λ> myMult (3:: Int) 4
 -- 12
 
+data DividedResult =
+    Result Integer
+  | DividedByZero
+  deriving Show
+
+isValid :: Integer -> DividedResult
+isValid 0 = DividedByZero
+isValid n = Result n
+
 dividedBy' :: Integral a => a -> a -> (a, a)
 dividedBy' num denom =
   go (abs num) (abs denom) 0
@@ -183,3 +192,38 @@ dividedBy' num denom =
       | n < d = (count * sign, n)
       | otherwise =
           go (n - d) d (count + 1)
+
+-- λ> dividedBy' 10 2
+-- (5,0)
+-- λ> dividedBy' 10 (-2)
+-- (-5,0)
+-- λ> dividedBy' (-10) (-2)
+-- (5,0)
+-- λ> dividedBy' (-10) 2
+-- (-5,0)
+
+dividedBy2 :: Integer -> Integer -> (DividedResult, Integer)
+dividedBy2 _ 0 = (DividedByZero, 0)
+dividedBy2 num denom =
+  go (abs num) (abs denom) 0
+  where
+    sign = if (num > 0 && denom > 0) || (num < 0 && denom < 0)
+      then 1
+      else (-1)
+    go n d count
+      | n < d = (Result (count * sign), n)
+      | otherwise =
+          go (n - d) d (count + 1)
+
+-- λ> dividedBy2 (-10) (-6)
+-- (Result 1,4)
+-- λ> dividedBy2 (-10) (6)
+-- (Result (-1),4)
+-- λ> dividedBy2 (-10) 0
+-- (DividedByZero,0)
+-- λ> dividedBy2 0 0
+-- (DividedByZero,0)
+-- λ> dividedBy2 0 2
+-- (Result 0,0)
+-- λ> dividedBy2 10 2
+-- (Result 5,0)
