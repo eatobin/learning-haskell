@@ -227,3 +227,11 @@ dividedBy2 num denom =
 -- (Result 0,0)
 -- λ> dividedBy2 10 2
 -- (Result 5,0)
+
+mc91 :: Integer ->Integer
+mc91 x
+  | x > 100 = x - 10
+  | otherwise = (mc91 . mc91) (x + 11)
+
+-- λ> map mc91 [95..110]
+-- [91,91,91,91,91,91,91,92,93,94,95,96,97,98,99,100]
