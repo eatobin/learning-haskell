@@ -39,6 +39,10 @@ digits n =
 -- λ> digits 0
 -- [0]
 
+-- go (6,7) = go (0,6) ++ [7]
+-- go (0,6) = [6]
+-- so: go (6,7) = [6] ++ [7]!!!
+
 wordNumber :: Int -> String
 -- wordNumber = concat . intersperse "-" . map digitToWord . digits
 wordNumber = intercalate "-" . map digitToWord . digits
