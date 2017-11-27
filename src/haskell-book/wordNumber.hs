@@ -20,8 +20,24 @@ digitToWord 7 = "seven"
 digitToWord 8 = "eight"
 digitToWord _ = "nine"
 
+-- λ> digitToWord 5
+-- "five"
+
 digits :: Int -> [Int]
-digits n = undefined
+digits n =
+  go (divMod n 10)
+  where
+    go (0, x) = [x]
+    go (xs, x) = go (divMod xs 10) ++ [x]
+
+-- λ> digits 1234
+-- [1,2,3,4]
+-- λ> digits 1022
+-- [1,0,2,2]
+-- λ> digits 1
+-- [1]
+-- λ> digits 0
+-- [0]
 
 wordNumber :: Int -> String
 wordNumber n = undefined
