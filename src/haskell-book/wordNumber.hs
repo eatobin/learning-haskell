@@ -42,3 +42,6 @@ digits n =
 wordNumber :: Int -> String
 -- wordNumber = concat . intersperse "-" . map digitToWord . digits
 wordNumber = intercalate "-" . map digitToWord . digits
+
+-- λ> wordNumber 12324546
+-- "one-two-three-two-four-five-four-six"
