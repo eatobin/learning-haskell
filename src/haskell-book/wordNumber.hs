@@ -2,7 +2,7 @@
 
 module WordNumber where
 
-import Data.List (intersperse)
+import Data.List (intersperse, intercalate)
 
 interspersed :: Bool
 interspersed =
@@ -40,4 +40,5 @@ digits n =
 -- [0]
 
 wordNumber :: Int -> String
-wordNumber n = undefined
+-- wordNumber = concat . intersperse "-" . map digitToWord . digits
+wordNumber = intercalate "-" . map digitToWord . digits
