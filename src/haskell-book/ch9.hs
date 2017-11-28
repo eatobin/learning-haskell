@@ -72,3 +72,17 @@ eftInt f c
 -- []
 -- λ> eftInt 50 53
 -- [50,51,52,53]
+
+eftChar :: Char -> Char -> String
+eftChar f c
+  | f > c = []
+  | f == c = [f]
+  | otherwise =
+    f : eftChar (succ f) c
+
+-- λ> eftChar 'a' 'a'
+-- "a"
+-- λ> eftChar 'a' 'f'
+-- "abcdef"
+-- λ> eftChar 'f' 'a'
+-- ""
