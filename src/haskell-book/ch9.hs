@@ -55,3 +55,20 @@ eftOrd _ _ = []
 -- [LT,EQ,GT]
 -- λ> eftOrd GT LT
 -- []
+eftInt :: Int -> Int -> [Int]
+eftInt f c
+  | f > c = []
+  | f == c = [f]
+  | otherwise =
+    f : eftInt (succ f) c
+
+-- λ> eftInt 5 5
+-- [5]
+-- λ> eftInt 5 6
+-- [5,6]
+-- λ> eftInt 5 16
+-- [5,6,7,8,9,10,11,12,13,14,15,16]
+-- λ> eftInt 50 16
+-- []
+-- λ> eftInt 50 53
+-- [50,51,52,53]
