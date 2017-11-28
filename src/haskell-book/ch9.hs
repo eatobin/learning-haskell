@@ -23,6 +23,8 @@ safeTail (_:xs) = Just xs
 -- λ> enumFromThenTo 1 3 10
 -- [1,3,5,7,9]
 
+-- page 308
+
 eftBool :: Bool -> Bool -> [Bool]
 eftBool False False = [False]
 eftBool True True = [True]
@@ -86,3 +88,16 @@ eftChar f c
 -- "abcdef"
 -- λ> eftChar 'f' 'a'
 -- ""
+
+-- page 311
+
+myWords :: String -> [String]
+myWords "" = []
+myWords s = takeWhile (/= ' ') s : myWords (dropWhile (== ' ') . dropWhile (/= ' ') $ s)
+
+-- λ> myWords "sheryl wants fun"
+-- ["sheryl","wants","fun"]
+-- λ> myWords "sheryl"
+-- ["sheryl"]
+-- λ> myWords ""
+-- []
