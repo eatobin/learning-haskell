@@ -109,3 +109,6 @@ myWords' s c = takeWhile (/= c) s : myWords' (dropWhile (== c) . dropWhile (/= c
 
 -- λ> myWords' "sheryl wants fun" ' '
 -- ["sheryl","wants","fun"]
+
+comp1 :: [Integer]
+comp1 = [(x :: Integer)^(2 :: Integer) | x <- [1..10], rem x 2 == 0]
