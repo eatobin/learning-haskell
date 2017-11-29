@@ -12,14 +12,15 @@ thirdSen :: String
 thirdSen = "What immortal hand or eye\n"
 
 fourthSen :: String
-fourthSen = "Could frame thy fearful\ \ symmetry?"
+fourthSen = "Could frame thy fearful symmetry?"
 
 sentences :: String
 sentences = firstSen ++ secondSen ++ thirdSen ++ fourthSen
 
 -- Implement this
 myLines :: String -> [String]
-myLines = undefined
+myLines "" = []
+myLines s = takeWhile (/= '\n') s : myLines (dropWhile (== '\n') . dropWhile (/= '\n') $ s)
 
 -- What we want 'myLines sentences' -- to equal
 shouldEqual :: [String]
