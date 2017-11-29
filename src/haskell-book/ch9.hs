@@ -112,3 +112,18 @@ myWords' s c = takeWhile (/= c) s : myWords' (dropWhile (== c) . dropWhile (/= c
 
 comp1 :: [Integer]
 comp1 = [(x :: Integer)^(2 :: Integer) | x <- [1..10], rem x 2 == 0]
+
+-- λ> comp1
+-- [4,16,36,64,100]
+
+comp2 :: [Integer]
+comp2 = [(x :: Integer)^(y :: Integer) | x <- [1..5], y <- [2, 3]]
+
+-- λ> comp2
+-- [1,1,4,8,9,27,16,64,25,125]
+
+comp3 :: [(Integer,Char)]
+comp3 = [(x,y) | x <- [1,2,3], y <- ['a','b']]
+
+-- λ> comp3
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b'),(3,'a'),(3,'b')]
