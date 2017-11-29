@@ -22,6 +22,11 @@ myLines :: String -> [String]
 myLines "" = []
 myLines s = takeWhile (/= '\n') s : myLines (dropWhile (== '\n') . dropWhile (/= '\n') $ s)
 
+-- Mine
+myLines' :: String -> Char -> [String]
+myLines' "" _ = []
+myLines' s c = takeWhile (/= c) s : myLines' (dropWhile (== c) . dropWhile (/= c) $ s) c
+
 -- What we want 'myLines sentences' -- to equal
 shouldEqual :: [String]
 shouldEqual = [ "Tyger Tyger, burning bright"
@@ -35,4 +40,7 @@ main :: IO ()
 main =
   print $
   "Are they equal? "
-  ++ show (myLines sentences == shouldEqual)
+  ++ show (myLines' sentences '\n' == shouldEqual)
+
+-- λ> main
+-- "Are they equal? True"

@@ -101,3 +101,11 @@ myWords s = takeWhile (/= ' ') s : myWords (dropWhile (== ' ') . dropWhile (/= '
 -- ["sheryl"]
 -- λ> myWords ""
 -- []
+
+-- Mine
+myWords' :: String -> Char -> [String]
+myWords' "" _ = []
+myWords' s c = takeWhile (/= c) s : myWords' (dropWhile (== c) . dropWhile (/= c) $ s) c
+
+-- λ> myWords' "sheryl wants fun" ' '
+-- ["sheryl","wants","fun"]
