@@ -144,3 +144,26 @@ mySqrPr =
 
 -- λ> mySqrPr
 -- [(1,1),(1,2),(1,3)]
+
+-- page 315
+
+myEvenSqr :: [Integer]
+myEvenSqr =
+  [x | x <-mySqr, rem x 2 == 0]
+
+-- λ> myEvenSqr
+-- [4,16,36,64,100]
+
+myFifty :: [(Integer,Integer)]
+myFifty =
+  [(x,y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+
+-- λ> myFifty
+-- [(1,64),(1,81),(1,100),(4,64),(4,81),(4,100),(9,64),(9,81),(9,100),(16,64),(16,81),(16,100),(25,64),(25,81),(25,100),(36,64),(36,81),(36,100),(49,64),(49,81),(49,100)]
+
+myFiveFifty :: [(Integer,Integer)]
+myFiveFifty =
+  take 5 [(x,y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
+
+-- λ> myFiveFifty 
+-- [(1,64),(1,81),(1,100),(4,64),(4,81)]
