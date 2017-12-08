@@ -165,5 +165,5 @@ myFiveFifty :: [(Integer,Integer)]
 myFiveFifty =
   take 5 [(x,y) | x <- mySqr, y <- mySqr, x < 50, y > 50]
 
--- λ> myFiveFifty 
+-- λ> myFiveFifty
 -- [(1,64),(1,81),(1,100),(4,64),(4,81)]
