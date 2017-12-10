@@ -3,12 +3,12 @@
 module Ch9 where
 
 safeHead :: [a] -> Maybe a
-safeHead [] = Nothing
+safeHead []    = Nothing
 safeHead (x:_) = Just x
 
 safeTail :: [a] -> Maybe [a]
-safeTail [] = Nothing
-safeTail [_] = Nothing
+safeTail []     = Nothing
+safeTail [_]    = Nothing
 safeTail (_:xs) = Just xs
 
 -- λ> 1:2:[] ++ 7:[]
@@ -27,9 +27,9 @@ safeTail (_:xs) = Just xs
 
 eftBool :: Bool -> Bool -> [Bool]
 eftBool False False = [False]
-eftBool True True = [True]
-eftBool False True = [False,True]
-eftBool _ _ = []
+eftBool True True   = [True]
+eftBool False True  = [False,True]
+eftBool _ _         = []
 
 -- λ> eftBool True True
 -- [True]
@@ -49,7 +49,7 @@ eftOrd GT GT = [GT]
 eftOrd LT EQ = [LT,EQ]
 eftOrd LT GT = [LT,EQ,GT]
 eftOrd EQ GT = [EQ,GT]
-eftOrd _ _ = []
+eftOrd _ _   = []
 
 -- λ> eftOrd LT LT
 -- [LT]
