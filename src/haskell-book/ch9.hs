@@ -167,3 +167,7 @@ myFiveFifty =
 
 -- λ> myFiveFifty
 -- [(1,64),(1,81),(1,100),(4,64),(4,81)]
+
+myElem :: String -> String
+myElem xs =
+  [x | x <- xs, x `elem` ['A'..'Z']]
