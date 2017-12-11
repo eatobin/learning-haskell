@@ -171,3 +171,34 @@ myFiveFifty =
 myElem :: String -> String
 myElem xs =
   [x | x <- xs, x `elem` ['A'..'Z']]
+
+-- page 317
+
+mySqr2 :: [Integer]
+mySqr2 =
+  [(x :: Integer)^(2 :: Integer) | x <- [1..5]]
+
+myCube :: [Integer]
+myCube =
+  [(y :: Integer)^(3 :: Integer) | y <- [1..5]]
+
+mySandC :: [(Integer,Integer)]
+mySandC =
+  [(x,y) | x <- mySqr2, y <- myCube]
+
+-- λ> mySandC
+-- [(1,1),(1,8),(1,27),(1,64),(1,125),(4,1),(4,8),(4,27),(4,64),(4,125),(9,1),(9,8),(9,27),(9,64),(9,125),(16,1),(16,8),(16,27),(16,64),(16,125),(25,1),(25,8),(25,27),(25,64),(25,125)]
+
+mySandC' :: [(Integer,Integer)]
+mySandC' =
+  [(x,y) | x <- mySqr2, y <- myCube, y < 50]
+
+-- λ> mySandC'
+-- [(1,1),(1,8),(1,27),(4,1),(4,8),(4,27),(9,1),(9,8),(9,27),(16,1),(16,8),(16,27),(25,1),(25,8),(25,27)]
+
+mySandC2 :: Int
+mySandC2 =
+  length [(x,y) | x <- mySqr2, y <- myCube, y < 50]
+
+-- λ> mySandC2
+-- 15
