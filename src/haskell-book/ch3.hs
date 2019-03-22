@@ -21,18 +21,13 @@ letterIndex :: Int -> Char
 letterIndex x = myString !! x
 
 rvrs :: String -> String
-rvrs str =
-  drop 9 str ++ " " ++ take 2 (drop 6 str) ++ " " ++ take 5 str
+rvrs str = drop 9 str ++ " " ++ take 2 (drop 6 str) ++ " " ++ take 5 str
 
 printSecond :: IO ()
-printSecond =
-  putStrLn greeting
-  where
-    greeting = "Yarrrrr"
+printSecond = putStrLn greeting where greeting = "Yarrrrr"
 
 main :: IO ()
 main = do
   putStrLn greeting
   printSecond
-  where
-    greeting = "Yarrrrr"
+  where greeting = "Yarrrrr"
