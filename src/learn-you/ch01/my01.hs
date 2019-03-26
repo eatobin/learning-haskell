@@ -1,4 +1,4 @@
-module Baby where
+module My01 where
 
 doubleMe x = x + x
 

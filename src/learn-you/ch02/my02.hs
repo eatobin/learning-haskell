@@ -1,4 +1,4 @@
-module MyTypes where
+module My02 where
 
 myAbs :: Num a => a -> a
 myAbs = abs
