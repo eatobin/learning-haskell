@@ -15,7 +15,7 @@
 
 module Monads where
 
-import     Control.Applicative
+import           Control.Applicative
 import           Control.Monad
 import           System.Random
 
@@ -44,8 +44,8 @@ noNad = half 66
 -- Just 33
 x3 = Just 3 >>= half
 x4 = Just 4 >>= half
-x5 = Nothing >>= half
-x77 = liftM half (Just 34)
+--x5 = Nothing >>= half
+--x77 = liftM half (Just 34)
 
 getNth :: [a] -> Int -> Maybe a
 getNth []  _ = Nothing
@@ -73,3 +73,8 @@ getNth' :: [a] -> Int -> Either String a
 getNth' []  _ = Left "empty"
 getNth' [x] _ = Right x
 getNth' xs  i = Right (xs !! i)
+
+randomNth' :: [a] -> IO (Either String a)
+randomNth' []  = return (Left "empty")
+randomNth' [x] = return (Right x)
+randomNth' xs  = Right . (xs !!) <$> randomRIO (0, length xs - 1)
