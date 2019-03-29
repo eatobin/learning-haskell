@@ -25,3 +25,4 @@ executable learning-haskell
                      , random
                      , aeson
                      , text
+                     , transformers

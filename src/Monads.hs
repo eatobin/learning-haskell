@@ -17,6 +17,7 @@ module Monads where
 
 import           Control.Applicative
 import           Control.Monad
+import           Control.Monad.Trans.Writer.Strict
 import           System.Random
 
 x0 = fmap (* 2) (Just 6)
@@ -78,3 +79,10 @@ randomNth' :: [a] -> IO (Either String a)
 randomNth' []  = return (Left "empty")
 randomNth' [x] = return (Right x)
 randomNth' xs  = Right . (xs !!) <$> randomRIO (0, length xs - 1)
+
+half'' :: Int -> Writer String Int
+half'' x = do
+    tell ("I just halved " ++ (show x) ++ "!")
+    return (x `div` 2)
+
+xx99 = runWriter $ half'' 8
