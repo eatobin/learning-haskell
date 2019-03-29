@@ -62,4 +62,9 @@ f = readFile "ghcid.txt" >>= putStrLn
 -- f
 -- ghcid --command="stack repl"
 
--- *Monads
+half' x = if even x then Right (x `div` 2) else Left "big error"
+
+noNad' = half' 66
+x33 = Right 3 >>= half'
+x44 = Right 4 >>= half'
+x65 = Left "no" >>= half'
