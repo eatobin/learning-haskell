@@ -15,7 +15,7 @@
 
 module Monads where
 
-import           Control.Applicative
+import     Control.Applicative
 import           Control.Monad
 import           System.Random
 
@@ -70,6 +70,6 @@ x44 = Right 4 >>= half'
 x65 = Left "no" >>= half'
 
 getNth' :: [a] -> Int -> Either String a
-getNth' [] _ = Left "empty"
+getNth' []  _ = Left "empty"
 getNth' [x] _ = Right x
-getNth' xs i = Right (xs !! i)
+getNth' xs  i = Right (xs !! i)
