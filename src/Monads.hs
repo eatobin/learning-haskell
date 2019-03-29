@@ -48,8 +48,8 @@ x5 = Nothing >>= half
 x77 = liftM half (Just 34)
 
 getNth :: [a] -> Int -> Maybe a
-getNth []  i = Nothing
-getNth [x] i = Just x
+getNth []  _ = Nothing
+getNth [x] _ = Just x
 getNth xs  i = Just (xs !! i)
 
 randomNth :: [a] -> IO (Maybe a)
@@ -68,3 +68,8 @@ noNad' = half' 66
 x33 = Right 3 >>= half'
 x44 = Right 4 >>= half'
 x65 = Left "no" >>= half'
+
+getNth' :: [a] -> Int -> Either String a
+getNth' [] _ = Left "empty"
+getNth' [x] _ = Right x
+getNth' xs i = Right (xs !! i)
