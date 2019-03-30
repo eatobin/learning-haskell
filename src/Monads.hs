@@ -82,7 +82,7 @@ randomNth' xs  = Right . (xs !!) <$> randomRIO (0, length xs - 1)
 
 half'' :: Int -> Writer String Int
 half'' x = do
-    tell ("I just halved " ++ (show x) ++ "!")
-    return (x `div` 2)
+  tell ("I just halved " ++ show x ++ "!")
+  return (x `div` 2)
 
 xx99 = runWriter $ half'' 8
