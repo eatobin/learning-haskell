@@ -17,6 +17,7 @@ module Monads where
 
 import           Control.Applicative
 import           Control.Monad
+import           Control.Monad.Trans.State
 import           Control.Monad.Trans.Writer.Strict
 import           System.Random
 
@@ -86,3 +87,25 @@ half'' x = do
   return (x `div` 2)
 
 xx99 = runWriter $ half'' 8
+
+greeter :: State String String
+greeter = do
+  value <- get
+  put "new state!"
+  return value
+
+yy99 = runState greeter "value"
+
+newNum :: State Int Int
+newNum = do
+  stateNum <- get
+  put 2340
+  return (stateNum + 1000)
+
+(inputVal, newState) = runState newNum 4201
+-- *Monads
+-- λ> inputVal
+-- 5201
+-- *Monads
+-- λ> newState
+-- 2340
