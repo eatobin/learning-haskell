@@ -98,9 +98,9 @@ yy99 = runState greeter "value"
 
 newNum :: State Int Int
 newNum = do
-  stateNum <- get
+  inputVal <- get
   put 2340
-  return (stateNum + 1000)
+  return (inputVal + 1000)
 
 (inputVal, newState) = runState newNum 4201
 -- *Monads
