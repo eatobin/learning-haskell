@@ -22,7 +22,9 @@ import           Control.Monad.Trans.Writer.Strict
 import           System.Random
 
 x0 = fmap (* 2) (Just 6)
-x10 = (* 2) <$> Just 6
+x19 = fmap (* 2) Nothing
+x10 = (*2) <$> Just 6
+xx3 = (*2) <$> Nothing
 
 x1 = liftA2 (*) (Just 5) (Just 3)
 x55 = Just (* 5) <*> Just 3
