@@ -36,7 +36,7 @@ z = (+ 3) <$> (+ 2)
 -- λ> z 6
 -- 11
 
-
+half :: Int -> Maybe Int
 half x = if even x then Just (x `div` 2) else Nothing
 
 -- instance Monad Maybe where
@@ -48,8 +48,12 @@ noNad = half 66
 -- Just 33
 x3 = Just 3 >>= half
 x4 = Just 4 >>= half
---x5 = Nothing >>= half
---x77 = liftM half (Just 34)
+x5 = Nothing >>= half
+x77 = liftM half (Just 34)
+-- x19 = liftM half 34  Nope, doesn't compile...
+xx77 = liftM half Nothing
+xxx77 = liftM half (Just 33)
+r5 = Just 20 >>= half >>= half >>= half
 
 getNth :: [a] -> Int -> Maybe a
 getNth []  _ = Nothing
@@ -72,6 +76,7 @@ noNad' = half' 66
 x33 = Right 3 >>= half'
 x44 = Right 4 >>= half'
 x65 = Left "no" >>= half'
+x1920 = liftM half' (Right 4)
 
 getNth' :: [a] -> Int -> Either String a
 getNth' []  _ = Left "empty"
