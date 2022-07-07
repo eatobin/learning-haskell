@@ -139,7 +139,9 @@ monday s0 =
       (a5, s5) = push s4
   in ([a1, a2, a3, a4, a5], s5)
 
-coinS, pushS :: State TurnstileState TurnstileOutput
+-- coinS, pushS :: State TurnstileState TurnstileOutput
+coinS :: State TurnstileState TurnstileOutput
+pushS :: State TurnstileState TurnstileOutput
 coinS = state coin
 pushS = state push
 
