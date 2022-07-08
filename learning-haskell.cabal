@@ -15,11 +15,13 @@ cabal-version:       >=1.10
 executable learning-haskell
   hs-source-dirs:      src
                      , src/learn-you/ch01
+                     , src/get-programming
   main-is:             Main.hs
   other-modules:       Monads
                      , MyAeson
                      , Capitalize
                      , My01
+                     , GP01
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , containers
