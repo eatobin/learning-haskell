@@ -20,6 +20,8 @@ import           Control.Monad
 import           Control.Monad.Trans.State
 import           Control.Monad.Trans.Writer.Strict
 import           System.Random
+import           Data.Maybe
+import qualified Data.Map as Map
 
 x0 = fmap (* 2) (Just 6)
 x19 = fmap (* 2) Nothing
@@ -154,3 +156,15 @@ mondayS = do
   a4 <- coinS
   a5 <- pushS
   return [a1, a2, a3, a4, a5]
+
+but = isJust (Just 88)
+nope = isJust Nothing
+hereIs = fromJust (Just 66)
+
+phoneBook = Map.fromList [(1234, "Erik"), (5678, "Patrik")]
+aaa = Map.lookup 1234 phoneBook
+bbb = fromMaybe "nope" aaa
+vvv = fromMaybe "nope" Nothing
+
+myMapper = Map.fromList [(1, ("Eric", "Tobin")), (2, ("Susan", "Smith"))]
+mmm = Map.lookup 2 myMapper
