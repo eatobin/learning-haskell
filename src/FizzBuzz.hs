@@ -1,6 +1,6 @@
 {-# OPTIONS -Wall #-}
 
-module Fizzbuzz where
+module FizzBuzz where
 
 fizzBuzz :: Integer -> String
 fizzBuzz x
