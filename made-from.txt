@@ -1,0 +1,1 @@
+stack --resolver lts-22.43 new learning-haskell
