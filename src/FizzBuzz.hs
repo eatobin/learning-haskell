@@ -11,4 +11,4 @@ fizzBuzz x
 
 fizzBuzzMap :: [String]
 fizzBuzzMap =
-  map fizzBuzz [7..16]
+  map fizzBuzz [7 .. 16]
