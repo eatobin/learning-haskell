@@ -142,6 +142,8 @@ newState :: Int
 -- λ> newState
 -- 2340
 
+-- https://www.adit.io/posts/2013-06-10-three-useful-monads.html#the-state-monad
+
 oldNumState :: State Int Int
 oldNumState = do
   existingState <- get
@@ -151,6 +153,17 @@ oldNumState = do
 
 -- λ> runState oldNumState 5
 -- (105,5)
+
+simpleNumState :: State Int Int
+simpleNumState = do
+  inputVal <- get
+  put 42
+  return inputVal
+
+-- λ> runState simpleNumState 66
+-- (66,42)
+
+(getted, setted) = runState simpleNumState 66
 
 newStateAfterAdding100 :: Int
 oldState :: Int
@@ -177,6 +190,11 @@ oldState :: Int
 --   put 999
 --   numberToAdd <- get
 --   return numberToAdd
+
+oneMore :: (State Int) Int
+oneMore = do
+  oldState <- get
+  return (oldState + 100)
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
