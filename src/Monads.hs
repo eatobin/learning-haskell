@@ -7,34 +7,38 @@
 -- A Maybe implements all three, so it is a functor, an applicative, and a monad.
 -- What is the difference between the three?
 
-
-
 -- functors: you apply a function to a wrapped value using fmap or <$>
 -- applicatives: you apply a wrapped function to a wrapped value using <*> or liftA
 -- monads: you apply a function that returns a wrapped value, to a wrapped value using >>= or liftM
 
 module Monads where
 
-import           Control.Applicative
-import           Control.Monad
-import           Control.Monad.Trans.State
-import           Control.Monad.Trans.Writer.Strict
-import           System.Random
-import           Data.Maybe
+import Control.Applicative
+import Control.Monad
+import Control.Monad.Trans.State
+import Control.Monad.Trans.Writer.Strict
 import qualified Data.Map as Map
+import Data.Maybe
+import System.Random
 
 x0 = fmap (* 2) (Just 6)
+
 x19 = fmap (* 2) Nothing
-x10 = (*2) <$> Just 6
-xx3 = (*2) <$> Nothing
+
+x10 = (* 2) <$> Just 6
+
+xx3 = (* 2) <$> Nothing
 
 x1 = liftA2 (*) (Just 5) (Just 3)
+
 x55 = Just (* 5) <*> Just 3
+
 z5 = Just (+ 5) <*> Just 3
 
 x2 = fmap (* 5) (Just 3)
 
 z = (+ 3) <$> (+ 2)
+
 -- λ> z 6
 -- 11
 
@@ -46,49 +50,62 @@ half x = if even x then Just (x `div` 2) else Nothing
 --     Just val >>= func  = func val
 
 noNad = half 66
+
 -- λ> noNad
 -- Just 33
 x3 = Just 3 >>= half
+
 x4 = Just 4 >>= half
+
 x5 = Nothing >>= half
+
 x77 = liftM half (Just 34)
+
 -- x19 = liftM half 34  Nope, doesn't compile...
 xx77 = liftM half Nothing
+
 xxx77 = liftM half (Just 33)
+
 r5 = Just 20 >>= half >>= half >>= half
 
 getNth :: [a] -> Int -> Maybe a
-getNth []  _ = Nothing
+getNth [] _ = Nothing
 getNth [x] _ = Just x
-getNth xs  i = Just (xs !! i)
+getNth xs i = Just (xs !! i)
 
 randomNth :: [a] -> IO (Maybe a)
-randomNth []  = return Nothing
+randomNth [] = return Nothing
 randomNth [x] = return (Just x)
-randomNth xs  = Just . (xs !!) <$> randomRIO (0, length xs - 1)
+randomNth xs = Just . (xs !!) <$> randomRIO (0, length xs - 1)
 
--- *Monads
+-- * Monads
+
 f = readFile "ghcid.txt" >>= putStrLn
+
 -- f
 -- ghcid --command="stack repl"
 
 half' x = if even x then Right (x `div` 2) else Left "big error"
 
 noNad' = half' 66
+
 x33 = Right 3 >>= half'
+
 x44 = Right 4 >>= half'
+
 x65 = Left "no" >>= half'
+
 x1920 = liftM half' (Right 4)
 
 getNth' :: [a] -> Int -> Either String a
-getNth' []  _ = Left "empty"
+getNth' [] _ = Left "empty"
 getNth' [x] _ = Right x
-getNth' xs  i = Right (xs !! i)
+getNth' xs i = Right (xs !! i)
 
 randomNth' :: [a] -> IO (Either String a)
-randomNth' []  = return (Left "empty")
+randomNth' [] = return (Left "empty")
 randomNth' [x] = return (Right x)
-randomNth' xs  = Right . (xs !!) <$> randomRIO (0, length xs - 1)
+randomNth' xs = Right . (xs !!) <$> randomRIO (0, length xs - 1)
 
 half'' :: Int -> Writer String Int
 half'' x = do
@@ -111,13 +128,55 @@ newNum = do
   put 2340
   return (inputVal + 1000)
 
+inputVal :: Int
+newState :: Int
 (inputVal, newState) = runState newNum 4201
--- *Monads
+
+-- * Monads
+
 -- λ> inputVal
 -- 5201
--- *Monads
+
+-- * Monads
+
 -- λ> newState
 -- 2340
+
+oldNumState :: State Int Int
+oldNumState = do
+  existingState <- get
+  return (100 + existingState)
+
+-- * Monads
+
+-- λ> runState oldNumState 5
+-- (105,5)
+
+newStateAfterAdding100 :: Int
+oldState :: Int
+(newStateAfterAdding100, oldState) = runState oldNumState 4201
+
+-- Ok, one module loaded.
+
+-- * Monads
+
+-- λ> newStateAfterAdding100
+-- 4301
+
+-- * Monads
+
+-- λ> oldState
+-- 4201
+
+-- * Monads
+
+-- λ>
+
+-- oldNumState :: State Int Int
+-- oldNumState = do
+--   put 999
+--   numberToAdd <- get
+--   return numberToAdd
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
@@ -126,10 +185,8 @@ data TurnstileOutput = Thank | Open | Tut
   deriving (Eq, Show)
 
 coin, push :: TurnstileState -> (TurnstileOutput, TurnstileState)
-
 coin _ = (Thank, Unlocked)
-
-push Locked   = (Tut , Locked)
+push Locked = (Tut, Locked)
 push Unlocked = (Open, Locked)
 
 monday :: TurnstileState -> ([TurnstileOutput], TurnstileState)
@@ -139,14 +196,14 @@ monday s0 =
       (a3, s3) = push s2
       (a4, s4) = coin s3
       (a5, s5) = push s4
-  in ([a1, a2, a3, a4, a5], s5)
+   in ([a1, a2, a3, a4, a5], s5)
 
 -- coinS, pushS :: State TurnstileState TurnstileOutput
 coinS :: State TurnstileState TurnstileOutput
 pushS :: State TurnstileState TurnstileOutput
 coinS = state coin
-pushS = state push
 
+pushS = state push
 
 mondayS :: State TurnstileState [TurnstileOutput]
 mondayS = do
@@ -158,13 +215,19 @@ mondayS = do
   return [a1, a2, a3, a4, a5]
 
 but = isJust (Just 88)
+
 nope = isJust Nothing
+
 hereIs = fromJust (Just 66)
 
 phoneBook = Map.fromList [(1234, "Erik"), (5678, "Patrik")]
+
 aaa = Map.lookup 1234 phoneBook
+
 bbb = fromMaybe "nope" aaa
+
 vvv = fromMaybe "nope" Nothing
 
 myMapper = Map.fromList [(1, ("Eric", "Tobin")), (2, ("Susan", "Smith"))]
+
 mmm = Map.lookup 2 myMapper
