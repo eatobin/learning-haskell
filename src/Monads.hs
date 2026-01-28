@@ -160,8 +160,20 @@ simpleNumState = do
   put 42
   return inputVal
 
+-- * Monads
+
 -- λ> runState simpleNumState 66
 -- (66,42)
+
+-- * Monads
+
+-- λ> execState simpleNumState 66
+-- 42
+
+-- * Monads
+
+-- λ> evalState simpleNumState 66
+-- 66
 
 (getted, setted) = runState simpleNumState 66
 
@@ -195,6 +207,46 @@ oneMore :: (State Int) Int
 oneMore = do
   oldState <- get
   return (oldState + 100)
+
+-- * Monads
+
+-- λ> runState oneMore 300
+-- (400,300)
+
+-- * Monads
+
+-- λ> evalState oneMore 300
+-- 400
+
+-- * Monads
+
+-- λ> execState oneMore 300
+-- 300
+
+-- * Monads
+
+-- λ> execState oneMore (execState oneMore 300)
+-- 300
+
+-- * Monads
+
+-- λ> evalState oneMore (execState oneMore 300)
+-- 400
+
+-- * Monads
+
+-- λ> execState oneMore (execState oneMore 300)
+-- 300
+
+-- * Monads
+
+-- λ> execState oneMore (evalState oneMore 300)
+-- 400
+
+-- * Monads
+
+-- λ> evalState oneMore (evalState oneMore 300)
+-- 500
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
