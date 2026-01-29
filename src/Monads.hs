@@ -258,12 +258,10 @@ goRed, goYellow, goGreen :: TrafficLightState -> (TrafficLightAction, TrafficLig
 goGreen Red = (Go, Green)
 goGreen Yellow = (Undefined, Green)
 goGreen Green = (Undefined, Green)
-goYellow Red = (Undefined, Yellow)
-goYellow Yellow = (Undefined, Yellow)
 goYellow Green = (Slow, Yellow)
-goRed Red = (Undefined, Red)
+goYellow _ = (Undefined, Yellow)
 goRed Yellow = (Stop, Red)
-goRed Green = (Undefined, Red)
+goRed _ = (Undefined, Red)
 
 changeToGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
 changeToGreen s0 = goGreen s0
