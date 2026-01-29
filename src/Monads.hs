@@ -263,26 +263,18 @@ goYellow _ = (Undefined, Yellow)
 goRed Yellow = (Stop, Red)
 goRed _ = (Undefined, Red)
 
-changeToGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
-changeToGreen s0 = goGreen s0
-
-changeToYellow :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
-changeToYellow s0 = goYellow s0
-
-changeToRed :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
-changeToRed s0 = goRed s0
-
 greenToRed :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
 greenToRed s0 =
-  let (a1, s1) = changeToYellow s0
-      (a2, s2) = changeToRed s1
-   in ([a1, a2], s2)
-
-greenToRed' :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
-greenToRed' s0 =
   let (a1, s1) = goYellow s0
       (a2, s2) = goRed s1
    in ([a1, a2], s2)
+
+greenToGreenAgain :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
+greenToGreenAgain s0 =
+  let (a1, s1) = goYellow s0
+      (a2, s2) = goRed s1
+      (a3, s3) = goGreen s2
+   in ([a1, a2, a3], s3)
 
 goRedS, goYellowS, goGreenS :: State TrafficLightState TrafficLightAction
 goRedS = state goRed
