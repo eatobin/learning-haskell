@@ -21,8 +21,10 @@ import qualified Data.Map as Map
 import Data.Maybe
 import System.Random
 
+x0 :: Maybe Integer
 x0 = fmap (* 2) (Just 6)
 
+x19 :: Maybe Integer
 x19 = fmap (* 2) Nothing
 
 x10 = (* 2) <$> Just 6
@@ -37,9 +39,15 @@ z5 = Just (+ 5) <*> Just 3
 
 x2 = fmap (* 5) (Just 3)
 
+z :: Integer -> Integer
 z = (+ 3) <$> (+ 2)
 
+zz :: Integer -> Integer
+zz = fmap (+ 3) (+ 2)
+
 -- λ> z 6
+-- 11
+-- λ> zz 6
 -- 11
 
 half :: Int -> Maybe Int
@@ -293,13 +301,15 @@ greenToRedS = do
 
 -- λ> runState goRedS Yellow
 
--- turnstileMain :: IO ()
--- turnstileMain =
---   do
---     print (runState mondayS Unlocked)
---     print (runState tuesdayS Unlocked)
---     print (evalState mondayS Locked)
---     print (execState mondayS Locked)
+trafficLightMain :: IO ()
+trafficLightMain =
+  do
+    print (runState greenToRedS Green)
+    print (runState greenToRedS Red)
+    print (evalState greenToRedS Green)
+    print (execState greenToRedS Green)
+
+-- λ> trafficLightMain
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
