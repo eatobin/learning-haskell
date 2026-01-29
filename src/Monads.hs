@@ -251,17 +251,17 @@ oneMore = do
 data TrafficLightState = Red | Yellow | Green
   deriving (Eq, Show)
 
-data TrafficLightAction = Stop | Slow | Go | Undefined
+data TrafficLightAction = IAmStopping | IAmSlowing | IAmGoing | IAmConfused
   deriving (Eq, Show)
 
 goRed, goYellow, goGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
-goGreen Red = (Go, Green)
-goGreen Yellow = (Undefined, Green)
-goGreen Green = (Undefined, Green)
-goYellow Green = (Slow, Yellow)
-goYellow _ = (Undefined, Yellow)
-goRed Yellow = (Stop, Red)
-goRed _ = (Undefined, Red)
+goGreen Red = (IAmGoing, Green)
+goGreen Yellow = (IAmConfused, Green)
+goGreen Green = (IAmConfused, Green)
+goYellow Green = (IAmSlowing, Yellow)
+goYellow _ = (IAmConfused, Yellow)
+goRed Yellow = (IAmStopping, Red)
+goRed _ = (IAmConfused, Red)
 
 greenToRed :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
 greenToRed s0 =
@@ -280,6 +280,26 @@ goRedS, goYellowS, goGreenS :: State TrafficLightState TrafficLightAction
 goRedS = state goRed
 goYellowS = state goYellow
 goGreenS = state goGreen
+
+greenToRedS :: State TrafficLightState [TrafficLightAction]
+greenToRedS = do
+  a1 <- goYellowS
+  a2 <- goRedS
+  return [a1, a2]
+
+-- λ> runState greenToRedS Green
+-- λ> execState greenToRedS Green
+-- λ> evalState greenToRedS Green
+
+-- λ> runState goRedS Yellow
+
+-- turnstileMain :: IO ()
+-- turnstileMain =
+--   do
+--     print (runState mondayS Unlocked)
+--     print (runState tuesdayS Unlocked)
+--     print (evalState mondayS Locked)
+--     print (execState mondayS Locked)
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
