@@ -13,25 +13,29 @@ divideByTen :: (Floating a) => a -> a
 divideByTen = (/ 10)
 
 isUpperAlphanum :: Char -> Bool
-isUpperAlphanum a = elem a ['A'..'Z']
+isUpperAlphanum a = elem a ['A' .. 'Z']
 
 z :: [(Integer, Char)]
-z = zip [1,2,3,4,5] "hello"
+z = zip [1, 2, 3, 4, 5] "hello"
+
 -- [(1,'h'),(2,'e'),(3,'l'),(4,'l'),(5,'o')]
 
 z' :: [(Char, Integer)]
-z' = flip zip [1,2,3,4,5] "hello"
+z' = flip zip [1, 2, 3, 4, 5] "hello"
+
 -- [('h',1),('e',2),('l',3),('l',4),('o',5)]
 
 largestDivisible :: Integer
-largestDivisible = head (filter p [100000,99999..])
-  where p x = mod x 3829 == 0
+largestDivisible = head (filter p [100000, 99999 ..])
+  where
+    p x = mod x 3829 == 0
+
 -- 99554
 
 -- takeWhile (/= ' ') "elephants know how to party"
 
 mySum :: Int
-mySum = sum (takeWhile (< 10000) (filter odd (map (^2) [1..])))
+mySum = sum (takeWhile (< 10000) (filter odd (map (^ 2) [1 ..])))
 
 -- Collatz Chain
 chain :: Integer -> [Integer]
@@ -41,8 +45,9 @@ chain n
   | odd n = n : chain ((n * 3) + 1)
 
 numLongChains :: Int
-numLongChains = length (filter isLong (map chain [1..100]))
-  where isLong xs = length xs > 15
+numLongChains = length (filter isLong (map chain [1 .. 100]))
+  where
+    isLong xs = length xs > 15
 
 -- map chain [1..5]
 -- ->[[1],[2,1],[3,10,5,16,8,4,2,1],[4,2,1],[5,16,8,4,2,1]]
@@ -50,30 +55,33 @@ numLongChains = length (filter isLong (map chain [1..100]))
 -- numLongChains -> 66
 
 listOfFuns :: [Integer -> Integer]
-listOfFuns = map (*) [0..]
+listOfFuns = map (*) [0 ..]
+
 -- (listOfFuns !! 4) 5 -> 20
 
 numLongChains' :: Int
-numLongChains' = length (filter (\xs -> length xs > 15) (map chain [1..100]))
+numLongChains' = length (filter (\xs -> length xs > 15) (map chain [1 .. 100]))
 
 myMap :: (Num a) => [a]
-myMap = map (+3) [1,6,3,2]
+myMap = map (+ 3) [1, 6, 3, 2]
 
 myMap' :: (Fractional a) => [a]
-myMap' = map (\x -> x + 3.0) [1.4,55.55,6.0]
+myMap' = map (\x -> x + 3.0) [1.4, 55.55, 6.0]
 
 myMap2 :: [Int]
-myMap2 = map (\(a,b) -> a + b) [(1,2),(3,5),(6,3),(2,6),(2,5)]
+myMap2 = map (\(a, b) -> a + b) [(1, 2), (3, 5), (6, 3), (2, 6), (2, 5)]
 
 flip' :: (a -> b -> c) -> b -> a -> c
 flip' f = \x y -> f y x
 
 myZipWith :: [[Char]]
 myZipWith = zipWith (flip (++)) ["love you", "love me"] ["i ", "you "]
+
 -- ["i love you","you love me"]
 
 myZipWith' :: [[Char]]
 myZipWith' = zipWith (++) ["love you", "love me"] ["i ", "you "]
+
 -- ["love youi ","love meyou "]
 
 sum' :: (Num a) => [a] -> a
@@ -96,12 +104,12 @@ eric = foldr (\x acc -> (x ++ " and Eric!") : acc) []
 
 sum5 :: [Int] -> Int
 sum5 [] = 0
-sum5 (x:xs) = x + sum5 xs
+sum5 (x : xs) = x + sum5 xs
 
 last' :: [a] -> a
 last' = foldl1 (\_ x -> x)
 
-myList = [4,8,33,9]
+myList = [4, 8, 33, 9]
 
 myScan :: (Num a) => [a] -> [a]
 myScan = scanl (+) 0
@@ -110,7 +118,7 @@ sqrt1 :: Float
 sqrt1 = sqrt $ 3 + 4 + 9
 
 sum99 :: (Num a, Ord a) => [a] -> a
-sum99 x = sum $ filter (> 10) $ map (*2) x
+sum99 x = sum $ filter (> 10) $ map (* 2) x
 
 g :: Int -> Int
 g x = x + 3
@@ -119,4 +127,4 @@ f :: Int -> Int
 f x = x - 1
 
 fg :: Int -> Int
-fg  = f . g
+fg = f . g

@@ -2,7 +2,7 @@
 
 module Capitalize where
 
-import           Data.Char
+import Data.Char
 
 capitalize :: String -> String
 capitalize [] = []

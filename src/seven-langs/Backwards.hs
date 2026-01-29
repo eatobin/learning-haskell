@@ -1,6 +1,7 @@
 backwards :: (Num a) => [a] -> [a]
 backwards [] = []
-backwards (h:t) = backwards t ++ [h]
+backwards (h : t) = backwards t ++ [h]
+
 -- backwards [1,2,3] ++ [1]
 -- backwards [2,3] ++ [2]
 -- backwards [3] ++ [3]
@@ -10,7 +11,8 @@ backwards (h:t) = backwards t ++ [h]
 
 backwards' :: (Num a) => [a] -> [a]
 backwards' [] = [99]
-backwards' (h:t) = backwards' t ++ [h]
+backwards' (h : t) = backwards' t ++ [h]
+
 -- backwards [1,2,3] ++ [1]
 -- backwards [2,3] ++ [2]
 -- backwards [3] ++ [3]

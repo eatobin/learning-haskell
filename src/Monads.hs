@@ -284,7 +284,7 @@ greenToRed' :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
 greenToRed' s0 =
   let (a1, s1) = goYellow s0
       (a2, s2) = goRed s1
-   in ([a1, a2], s2) 
+   in ([a1, a2], s2)
 
 goRedS, goYellowS, goGreenS :: State TrafficLightState TrafficLightAction
 goRedS = state goRed

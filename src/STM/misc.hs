@@ -1,8 +1,8 @@
---dispVar x = atomRead x >>= print
---appV fn x = atomically $ readTVar x >>= writeTVar x . fn
---appV (addBook (makeBook "Great Expectations" "Dickens" Nothing)) tvBooks
---appV fn x = atomically (readTVar x >>= writeTVar x . fn)
---appV x = atomically (readTVar x >>= writeTVar x . (+ 1))
---appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
---printCheckInOut bksb brsb = if (snd bksb) then putStrLn (statusToString bksb brsb)
+-- dispVar x = atomRead x >>= print
+-- appV fn x = atomically $ readTVar x >>= writeTVar x . fn
+-- appV (addBook (makeBook "Great Expectations" "Dickens" Nothing)) tvBooks
+-- appV fn x = atomically (readTVar x >>= writeTVar x . fn)
+-- appV x = atomically (readTVar x >>= writeTVar x . (+ 1))
+-- appV x = atomically (readTVar x >>= \j -> writeTVar x (j + 20))
+-- printCheckInOut bksb brsb = if (snd bksb) then putStrLn (statusToString bksb brsb)
 --  else putStrLn "\n*** There is an error with a book check out or check in! ***\n"

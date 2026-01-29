@@ -4,6 +4,7 @@ module Map where
 --   where square x = x * x
 
 squareAll = map square list
-  where square x = x * x
+  where
+    square x = x * x
 
-list = [1,2,3]
+list = [1, 2, 3]
