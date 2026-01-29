@@ -203,7 +203,7 @@ oldState :: Int
 --   numberToAdd <- get
 --   return numberToAdd
 
-oneMore :: (State Int) Int
+oneMore :: State Int Int
 oneMore = do
   oldState <- get
   return (oldState + 100)
@@ -248,6 +248,49 @@ oneMore = do
 -- λ> evalState oneMore (evalState oneMore 300)
 -- 500
 
+data TrafficLightState = Red | Yellow | Green
+  deriving (Eq, Show)
+
+data TrafficLightAction = Stop | Slow | Go | Undefined
+  deriving (Eq, Show)
+
+goRed, goYellow, goGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
+goGreen Red = (Go, Green)
+goGreen Yellow = (Undefined, Green)
+goGreen Green = (Undefined, Green)
+goYellow Red = (Undefined, Yellow)
+goYellow Yellow = (Undefined, Yellow)
+goYellow Green = (Slow, Yellow)
+goRed Red = (Undefined, Red)
+goRed Yellow = (Stop, Red)
+goRed Green = (Undefined, Red)
+
+changeToGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
+changeToGreen s0 = goGreen s0
+
+changeToYellow :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
+changeToYellow s0 = goYellow s0
+
+changeToRed :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
+changeToRed s0 = goRed s0
+
+greenToRed :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
+greenToRed s0 =
+  let (a1, s1) = changeToYellow s0
+      (a2, s2) = changeToRed s1
+   in ([a1, a2], s2)
+
+greenToRed' :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
+greenToRed' s0 =
+  let (a1, s1) = goYellow s0
+      (a2, s2) = goRed s1
+   in ([a1, a2], s2) 
+
+goRedS, goYellowS, goGreenS :: State TrafficLightState TrafficLightAction
+goRedS = state goRed
+goYellowS = state goYellow
+goGreenS = state goGreen
+
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
 
@@ -268,11 +311,10 @@ monday s0 =
       (a5, s5) = push s4
    in ([a1, a2, a3, a4, a5], s5)
 
--- coinS, pushS :: State TurnstileState TurnstileOutput
-coinS :: State TurnstileState TurnstileOutput
-pushS :: State TurnstileState TurnstileOutput
+coinS, pushS :: State TurnstileState TurnstileOutput
+-- coinS :: State TurnstileState TurnstileOutput
+-- pushS :: State TurnstileState TurnstileOutput
 coinS = state coin
-
 pushS = state push
 
 mondayS :: State TurnstileState [TurnstileOutput]
