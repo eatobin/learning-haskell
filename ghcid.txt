@@ -6,9 +6,15 @@ Build/install:
 [eric@eric-minisforum day01](master)$ stack build --copy-compiler-tool ghcid
 [eric@eric-minisforum day01](master)$ stack exec -- which ghcid
 
+[eric@eric-minisforum day01](master)$ stack build --copy-compiler-tool hlint
+[eric@eric-minisforum day01](master)$ stack exec -- which hlint
+
 Run:
 [eric@eric-minisforum day01](master)$ stack exec -- ghcid -c "stack ghci learning-haskell"
 [eric@eric-minisforum day01](master)$ stack exec -- ghcid -c "stack ghci test/Spec.hs"
+
+stack exec -- hlint src/Monads.hs
+stack exec -- hlint test/Tests.hs
 
 ghcid             > [6 of 6] Compiling Paths_ghcid
 ghcid             > copy/register
