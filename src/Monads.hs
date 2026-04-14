@@ -118,7 +118,7 @@ randomNth' xs = Right . (xs !!) <$> randomRIO (0, length xs - 1)
 half'' :: Int -> Writer String Int
 half'' x = do
   tell ("I just halved " ++ show x ++ "!")
-  return (x `div` 2)
+  return (div x 2)
 
 xx99 = runWriter $ half'' 8
 
@@ -215,6 +215,11 @@ oneMore :: State Int Int
 oneMore = do
   oldState <- get
   return (oldState + 100)
+
+twoMore :: State String Int
+twoMore = do
+  toPrint <- get
+  return 888
 
 -- * Monads
 
