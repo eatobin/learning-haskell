@@ -13,13 +13,25 @@
 
 module Monads where
 
-import Control.Applicative
-import Control.Monad
+import Control.Applicative ()
+import Control.Monad (liftM)
 import Control.Monad.Trans.State
+  ( State,
+    evalState,
+    execState,
+    get,
+    put,
+    runState,
+    state,
+  )
 import Control.Monad.Trans.Writer.Strict
+  ( Writer,
+    runWriter,
+    tell,
+  )
 import qualified Data.Map as Map
-import Data.Maybe
-import System.Random
+import Data.Maybe (fromJust, fromMaybe, isJust)
+import System.Random (randomRIO)
 
 x0 :: Maybe Integer
 x0 = fmap (* 2) (Just 6)
@@ -27,8 +39,10 @@ x0 = fmap (* 2) (Just 6)
 x19 :: Maybe Integer
 x19 = fmap (* 2) Nothing
 
+x10 :: Maybe Integer
 x10 = (* 2) <$> Just 6
 
+xx3 :: Maybe Integer
 xx3 = (* 2) <$> Nothing
 
 x1 = liftA2 (*) (Just 5) (Just 3)

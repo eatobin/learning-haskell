@@ -1,45 +1,55 @@
 module Transfer1 (main1) where
 
 import Control.Concurrent.STM
+  ( STM,
+    TVar,
+    atomically,
+    check,
+    newTVar,
+    newTVarIO,
+    readTVar,
+    readTVarIO,
+    writeTVar,
+  )
 
 type Account = TVar Int
 
 withdraw :: Account -> Int -> STM ()
-withdraw acc amount = do
-  bal <- readTVar acc
+withdraw accFrom amount = do
+  bal <- readTVar accFrom
   check (amount >= 0 && amount <= bal)
-  writeTVar acc (bal - amount)
+  writeTVar accFrom (bal - amount)
 
 deposit :: Account -> Int -> STM ()
-deposit acc amount = do
-  bal <- readTVar acc
+deposit accTo amount = do
+  bal <- readTVar accTo
   check (amount >= 0)
-  writeTVar acc (bal + amount)
+  writeTVar accTo (bal + amount)
 
 transfer :: Account -> Account -> Int -> IO ()
-transfer from to amount =
+transfer accFrom accTo amount =
   atomically
     ( do
-        deposit to amount
-        withdraw from amount
+        withdraw accFrom amount
+        deposit accTo amount
     )
 
 showAccount :: Account -> IO Int
 showAccount = readTVarIO
 
 showBalance :: Account -> Account -> IO ()
-showBalance from to = do
-  x <- showAccount from
-  y <- showAccount to
+showBalance accFrom accTo = do
+  x <- showAccount accFrom
+  y <- showAccount accTo
   putStrLn $ "FROM balance: $" <> show x
   putStrLn $ "TO balance: $" <> show y
 
 main1 :: IO ()
 main1 = do
-  from <- atomically (newTVar 200)
-  to <- atomically (newTVar 200)
-  showBalance from to
+  accFrom <- newTVarIO 200
+  accTo <- newTVarIO 200
+  showBalance accFrom accTo
   putStrLn "Transfering $50 from 'FROM' to 'TO'"
-  transfer from to 50
+  transfer accFrom accTo 50
   putStrLn "Done!"
-  showBalance from to
+  showBalance accFrom accTo
