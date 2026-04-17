@@ -290,6 +290,17 @@ goYellow _ = (IAmConfused, Yellow)
 goRed Yellow = (IAmStopping, Red)
 goRed _ = (IAmConfused, Red)
 
+goRedSent, goYellowSent, goGreenSent :: TrafficLightState -> (String, TrafficLightState)
+goGreenSent Red = ("I am red and going to green.", Green)
+goGreenSent Yellow = ("I am yellow and can't go to green.", Yellow)
+goGreenSent Green = ("I am green already!!", Green)
+goYellowSent Red = ("I am red and can't go to yellow.", Red)
+goYellowSent Yellow = ("I am yellow already!!", Yellow)
+goYellowSent Green = ("I am green and going to yellow.", Yellow)
+goRedSent Red = ("I am red already!!", Red)
+goRedSent Yellow = ("I am yellow and going to red.", Red)
+goRedSent Green = ("I am green and can't go to red.", Green)
+
 greenToRed :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
 greenToRed s0 =
   let (a1, s1) = goYellow s0
@@ -308,10 +319,21 @@ goRedS = state goRed
 goYellowS = state goYellow
 goGreenS = state goGreen
 
+goRedSentS, goYellowSentS, goGreenSentS :: State TrafficLightState String
+goRedSentS = state goRedSent
+goYellowSentS = state goYellowSent
+goGreenSentS = state goGreenSent
+
 greenToRedS :: State TrafficLightState [TrafficLightAction]
 greenToRedS = do
   a1 <- goYellowS
   a2 <- goRedS
+  return [a1, a2]
+
+greenToRedSentS :: State TrafficLightState [String]
+greenToRedSentS = do
+  a1 <- goYellowSentS
+  a2 <- goRedSentS
   return [a1, a2]
 
 -- λ> runState greenToRedS Green
@@ -329,6 +351,17 @@ trafficLightMain =
     print (execState greenToRedS Green)
 
 -- λ> trafficLightMain
+
+trafficLightMain1 :: IO ()
+trafficLightMain1 =
+  do
+    print (runState greenToRedSentS Green)
+    print (runState greenToRedSentS Yellow)
+    print (runState greenToRedSentS Red)
+    print (evalState greenToRedSentS Green)
+    print (execState greenToRedSentS Green)
+
+-- λ> trafficLightMain1
 
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
