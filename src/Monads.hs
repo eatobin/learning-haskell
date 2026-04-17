@@ -342,10 +342,17 @@ greenToRedSentS = do
 
 -- λ> runState goRedS Yellow
 
+-- λ> runState greenToRedSentS Green
+-- λ> execState greenToRedSentS Green
+-- λ> evalState greenToRedSentS Green
+
+-- λ> runState goRedSentS Yellow
+
 trafficLightMain :: IO ()
 trafficLightMain =
   do
     print (runState greenToRedS Green)
+    print (runState greenToRedS Yellow)
     print (runState greenToRedS Red)
     print (evalState greenToRedS Green)
     print (execState greenToRedS Green)
