@@ -278,28 +278,39 @@ twoMore = do
 data TrafficLightState = Red | Yellow | Green
   deriving (Eq, Show)
 
-data TrafficLightAction = IAmStopping | IAmSlowing | IAmGoing | IAmConfused
+data TrafficLightAction
+  = IAmStoppingFromYellowToRed
+  | IAmSlowingFromGreenToYellow
+  | IAmGoingFromRedToGreen
+  | ICannotGoFromRedToYellow
+  | ICannotGoFromGreenToRed
+  | ICannotGoFromYellowToGreen
+  | IAmAlreadyGreen
+  | IAmAlreadyYellow
+  | IAmAlreadyRed
   deriving (Eq, Show)
 
-goRed, goYellow, goGreen :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
-goGreen Red = (IAmGoing, Green)
-goGreen Yellow = (IAmConfused, Green)
-goGreen Green = (IAmConfused, Green)
-goYellow Green = (IAmSlowing, Yellow)
-goYellow _ = (IAmConfused, Yellow)
-goRed Yellow = (IAmStopping, Red)
-goRed _ = (IAmConfused, Red)
+goGreen, goYellow, goRed :: TrafficLightState -> (TrafficLightAction, TrafficLightState)
+goGreen Red = (IAmGoingFromRedToGreen, Green)
+goGreen Yellow = (ICannotGoFromYellowToGreen, Yellow)
+goGreen Green = (IAmAlreadyGreen, Green)
+goYellow Green = (IAmSlowingFromGreenToYellow, Yellow)
+goYellow Red = (ICannotGoFromRedToYellow, Red)
+goYellow Yellow = (IAmAlreadyYellow, Yellow)
+goRed Yellow = (IAmStoppingFromYellowToRed, Red)
+goRed Green = (ICannotGoFromGreenToRed, Green)
+goRed Red = (IAmAlreadyRed, Red)
 
 goRedSent, goYellowSent, goGreenSent :: TrafficLightState -> (String, TrafficLightState)
 goGreenSent Red = ("I am red and going to green.", Green)
 goGreenSent Yellow = ("I am yellow and can't go to green.", Yellow)
 goGreenSent Green = ("I am green already!!", Green)
+goYellowSent Green = ("I am green and going to yellow.", Green)
 goYellowSent Red = ("I am red and can't go to yellow.", Red)
 goYellowSent Yellow = ("I am yellow already!!", Yellow)
-goYellowSent Green = ("I am green and going to yellow.", Yellow)
-goRedSent Red = ("I am red already!!", Red)
-goRedSent Yellow = ("I am yellow and going to red.", Red)
+goRedSent Yellow = ("I am yellow and going to red.", Yellow)
 goRedSent Green = ("I am green and can't go to red.", Green)
+goRedSent Red = ("I am red already!!", Red)
 
 greenToRed :: TrafficLightState -> ([TrafficLightAction], TrafficLightState)
 greenToRed s0 =
@@ -314,59 +325,59 @@ greenToGreenAgain s0 =
       (a3, s3) = goGreen s2
    in ([a1, a2, a3], s3)
 
-goRedS, goYellowS, goGreenS :: State TrafficLightState TrafficLightAction
-goRedS = state goRed
-goYellowS = state goYellow
-goGreenS = state goGreen
+goRedState, goYellowState, goGreenState :: State TrafficLightState TrafficLightAction
+goRedState = state goRed
+goYellowState = state goYellow
+goGreenState = state goGreen
 
-goRedSentS, goYellowSentS, goGreenSentS :: State TrafficLightState String
-goRedSentS = state goRedSent
-goYellowSentS = state goYellowSent
-goGreenSentS = state goGreenSent
+goRedSentState, goYellowSentState, goGreenSentState :: State TrafficLightState String
+goRedSentState = state goRedSent
+goYellowSentState = state goYellowSent
+goGreenSentState = state goGreenSent
 
-greenToRedS :: State TrafficLightState [TrafficLightAction]
-greenToRedS = do
-  a1 <- goYellowS
-  a2 <- goRedS
+greenToRedState :: State TrafficLightState [TrafficLightAction]
+greenToRedState = do
+  a1 <- goYellowState
+  a2 <- goRedState
   return [a1, a2]
 
-greenToRedSentS :: State TrafficLightState [String]
-greenToRedSentS = do
-  a1 <- goYellowSentS
-  a2 <- goRedSentS
+greenToRedSentState :: State TrafficLightState [String]
+greenToRedSentState = do
+  a1 <- goYellowSentState
+  a2 <- goRedSentState
   return [a1, a2]
 
--- λ> runState greenToRedS Green
--- λ> execState greenToRedS Green
--- λ> evalState greenToRedS Green
+-- λ> runState greenToRedState Green
+-- λ> execState greenToRedState Green
+-- λ> evalState greenToRedState Green
 
--- λ> runState goRedS Yellow
+-- λ> runState goRedState Yellow
 
--- λ> runState greenToRedSentS Green
--- λ> execState greenToRedSentS Green
--- λ> evalState greenToRedSentS Green
+-- λ> runState greenToRedSentState Green
+-- λ> execState greenToRedSentState Green
+-- λ> evalState greenToRedSentState Green
 
 -- λ> runState goRedSentS Yellow
 
 trafficLightMain :: IO ()
 trafficLightMain =
   do
-    print (runState greenToRedS Green)
-    print (runState greenToRedS Yellow)
-    print (runState greenToRedS Red)
-    print (evalState greenToRedS Green)
-    print (execState greenToRedS Green)
+    print (runState greenToRedState Green)
+    print (runState greenToRedState Yellow)
+    print (runState greenToRedState Red)
+    print (evalState greenToRedState Green)
+    print (execState greenToRedState Green)
 
 -- λ> trafficLightMain
 
 trafficLightMain1 :: IO ()
 trafficLightMain1 =
   do
-    print (runState greenToRedSentS Green)
-    print (runState greenToRedSentS Yellow)
-    print (runState greenToRedSentS Red)
-    print (evalState greenToRedSentS Green)
-    print (execState greenToRedSentS Green)
+    print (runState greenToRedSentState Green)
+    print (runState greenToRedSentState Yellow)
+    print (runState greenToRedSentState Red)
+    print (evalState greenToRedSentState Green)
+    print (execState greenToRedSentState Green)
 
 -- λ> trafficLightMain1
 
