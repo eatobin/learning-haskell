@@ -405,20 +405,29 @@ mondayS = do
   a5 <- pushS
   return [a1, a2, a3, a4, a5]
 
+but :: Bool
 but = isJust (Just 88)
 
+nope :: Bool
 nope = isJust Nothing
 
+hereIs :: Integer
 hereIs = fromJust (Just 66)
 
+phoneBook :: Map.Map Integer String
 phoneBook = Map.fromList [(1234, "Erik"), (5678, "Patrik")]
 
+aaa :: Maybe String
 aaa = Map.lookup 1234 phoneBook
 
+bbb :: String
 bbb = fromMaybe "nope" aaa
 
+vvv :: String
 vvv = fromMaybe "nope" Nothing
 
+myMapper :: Map.Map Integer (String, String)
 myMapper = Map.fromList [(1, ("Eric", "Tobin")), (2, ("Susan", "Smith"))]
 
+mmm :: Maybe (String, String)
 mmm = Map.lookup 2 myMapper
