@@ -314,10 +314,10 @@ goRed Red = (IAmAlreadyRed, Red)
 --       (a3, s3) = goGreen s2
 --    in ([a1, a2, a3], s3)
 
-goRedState, goYellowState, goGreenState :: State TrafficLightState TrafficLightAction
-goRedState = state goRed
-goYellowState = state goYellow
+goGreenState, goYellowState, goRedState :: State TrafficLightState TrafficLightAction
 goGreenState = state goGreen
+goYellowState = state goYellow
+goRedState = state goRed
 
 greenToRedState :: State TrafficLightState [TrafficLightAction]
 greenToRedState = do
@@ -341,7 +341,17 @@ trafficLightMain =
     print (evalState greenToRedState Green)
     print (execState greenToRedState Green)
 
+trafficLightMainAgain :: IO ()
+trafficLightMainAgain =
+  do
+    print (runState greenToGreenAgainState Green)
+    print (runState greenToGreenAgainState Yellow)
+    print (runState greenToGreenAgainState Red)
+    print (evalState greenToGreenAgainState Green)
+    print (execState greenToGreenAgainState Green)
+
 -- λ> trafficLightMain
+-- λ> trafficLightMainAgain
 
 -- λ> runState greenToRedState Green
 -- λ> execState greenToRedState Green
