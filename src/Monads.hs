@@ -138,11 +138,14 @@ xx99 = runWriter $ half'' 8
 
 greeter :: State String String
 greeter = do
-  value <- get
-  put "new state!"
-  return value
+  action <- get
+  put "and... this is the State from 'put'"
+  return action
 
-yy99 = runState greeter "value"
+yy99 = runState greeter "this is the Action from 'get'"
+
+-- λ> yy99
+-- ("this is the Action from 'get'","and... this is the State from 'put'")
 
 newNum :: State Int Int
 newNum = do
