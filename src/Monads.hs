@@ -15,16 +15,15 @@ module Monads where
 
 import Control.Applicative ()
 import Control.Monad (liftM)
-import Control.Monad.Trans.State.Strict
-  ( State,
+import Control.Monad.State.Strict
+  ( MonadState (get, put),
+    State,
     evalState,
     execState,
-    get,
-    put,
     runState,
     state,
   )
-import Control.Monad.Trans.Writer.Strict
+import Control.Monad.Writer.Strict
   ( Writer,
     runWriter,
     tell,
