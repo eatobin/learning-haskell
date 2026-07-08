@@ -133,6 +133,7 @@ half'' x = do
   tell ("I just halved " ++ show x ++ "!")
   return (div x 2)
 
+xx99 :: (Int, String)
 xx99 = runWriter $ half'' 8
 
 greeter :: State String String
@@ -141,6 +142,7 @@ greeter = do
   put "and... this is the State from 'put'"
   return action
 
+yy99 :: (String, String)
 yy99 = runState greeter "this is the Action from 'get'"
 
 -- λ> yy99
@@ -234,8 +236,11 @@ oneMore = do
 
 twoMore :: State String Int
 twoMore = do
-  toPrint <- get
+  toPrintRightNowSilly <- get
   return 888
+
+-- λ> runState twoMore "hi"
+-- (888,"hi")
 
 -- * Monads
 

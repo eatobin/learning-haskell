@@ -23,7 +23,7 @@ type InventoryState a = State Inventory a
 
 -- Add stock to the inventory
 addStock :: Item -> Quantity -> InventoryState ()
-addStock item qty = modify (\inv -> M.insertWith (+) item qty inv)
+addStock item qty = modify (M.insertWith (+) item qty)
 
 -- Sell an item from the inventory
 -- Returns True if successful, False if out of stock
