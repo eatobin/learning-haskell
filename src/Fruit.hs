@@ -58,3 +58,7 @@ mainX = do
 
   putStrLn $ "Order Outcomes: " ++ show results
   putStrLn $ "Final Inventory: " ++ show (M.toList finalInventory)
+
+-- λ> mainX
+-- Order Outcomes: (True,False)
+-- Final Inventory: [("Apples",7),("Oranges",5)]

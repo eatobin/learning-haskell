@@ -55,3 +55,10 @@ mainX = do
 
   putStrLn "\n--- Final Player State ---"
   print finalState
+
+-- λ> mainX
+-- --- Action Logs ---
+-- ["Successfully added Iron Sword","Successfully added Healing Potion","Too heavy! Could not add Heavy Gold Chest"]
+
+-- --- Final Player State ---
+-- InventoryState {items = ["Healing Potion","Iron Sword"], totalWeight = 5.5}
