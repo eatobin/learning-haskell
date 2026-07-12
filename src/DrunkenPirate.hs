@@ -25,23 +25,23 @@ crawl = do
   put newPosition
   return "Just crawled one"
 
--- runTreasureMapState :: State Position [String]
--- runTreasureMapState = do
---   msg1 <- crawl
---   msg2 <- stagger
---   msg3 <- stagger
---   return [msg1, msg2, msg3]
-
 runTreasureMapState :: State Position [String]
 runTreasureMapState = do
-  let acc = [] :: [String]
-  currentPosition <- get
-  if currentPosition < 5
-    then do
-      msg <- crawl
-      return (msg : acc)
-    else do
-      return acc
+  msg1 <- crawl
+  msg2 <- stagger
+  msg3 <- stagger
+  return [msg1, msg2, msg3]
+
+-- runTreasureMapState :: State Position [String]
+-- runTreasureMapState = do
+--   let acc = [] :: [String]
+--   currentPosition <- get
+--   if currentPosition < 5
+--     then do
+--       msg <- crawl
+--       return (msg : acc)
+--     else do
+--       return acc
 
 -- runTreasureMapState :: State Position [String]
 -- runTreasureMapState = do
