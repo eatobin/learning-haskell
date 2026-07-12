@@ -28,6 +28,7 @@ executable learning-haskell
                      , NewMo
                      , DrunkenPirate
                      , Countdown
+                     , CountdownTwo
   default-language:    Haskell2010
   build-depends:       base >= 4.7 && < 5
                      , containers
