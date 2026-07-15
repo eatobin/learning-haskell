@@ -7,15 +7,17 @@ import Control.Monad.State.Strict
   )
 
 -- 1. Define the shape of our State
-data InventoryState = InventoryState
+data Inventory = Inventory
   { items :: [String],
     totalWeight :: Double
   }
   deriving (Show)
 
+type InventoryState a = State Inventory a
+
 -- 2. Define a function to modify state inside the Monad
 -- It returns a String confirmation message, and mutates InventoryState
-addItem :: String -> Double -> State InventoryState String
+addItem :: String -> Double -> State Inventory String
 addItem itemName itemWeight = do
   -- 'get' fetches the current state snapshot
   currentState <- get
@@ -28,14 +30,14 @@ addItem itemName itemWeight = do
     else do
       -- 'put' overwrites the old state with a new state
       put $
-        InventoryState
+        Inventory
           { items = itemName : items currentState,
             totalWeight = currentWeight + itemWeight
           }
       return ("Successfully added " ++ itemName)
 
 -- 3. Sequence multiple stateful operations inside a do-block
-gameSession :: State InventoryState [String]
+gameSession :: State Inventory [String]
 gameSession = do
   msg1 <- addItem "Iron Sword" 4.5
   msg2 <- addItem "Healing Potion" 1.0
@@ -45,7 +47,7 @@ gameSession = do
 -- 4. Execute the monad
 mainX :: IO ()
 mainX = do
-  let initialState = InventoryState {items = [], totalWeight = 0.0}
+  let initialState = Inventory {items = [], totalWeight = 0.0}
 
   -- runState returns both the final function output AND the final state tuple: (result, state)
   let (logMessages, finalState) = runState gameSession initialState
