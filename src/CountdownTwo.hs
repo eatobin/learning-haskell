@@ -4,9 +4,12 @@ import Control.Monad.State (MonadState (get, put), State, runState)
 
 -- The state is an Int (the current countdown number).
 -- The result of the computation is a list of Strings (the emitted outputs).
-type CountdownState = State Int [String]
 
-countdownStep :: CountdownState
+type Counter = Int
+
+type CountdownState a = State Counter a
+
+countdownStep :: CountdownState [String]
 countdownStep = do
   n <- get -- Get the current state
   if n <= 0
